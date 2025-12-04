@@ -1,11 +1,9 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import Hero from "@/components/modules/Home/Hero";
 
 export default function Home() {
   return (
     <div>
-      <h1>Welcome</h1>
-      <Button variant="default">Hello!</Button>
+      <Hero />
     </div>
   );
 }
