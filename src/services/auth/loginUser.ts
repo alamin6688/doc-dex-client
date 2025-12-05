@@ -2,6 +2,8 @@
 "use server";
 
 import z from "zod";
+import { parse } from "cookie";
+import { cookies } from "next/headers";
 
 const loginValidationZodSchema = z.object({
   email: z.email({
@@ -22,6 +24,8 @@ export const loginUser = async (
   formData: any
 ): Promise<any> => {
   try {
+    let accessTokenObject: null | any = null;
+    let refreshTokenObject: null | any = null;
     const loginData = {
       email: formData.get("email"),
       password: formData.get("password"),
@@ -48,10 +52,66 @@ export const loginUser = async (
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => res.json());
+    });
 
-    console.log(res, "res");
-    return res;
+    const result = await res.json();
+
+    const setCookieHeaders = res.headers.getSetCookie();
+
+    if (setCookieHeaders && setCookieHeaders.length > 0) {
+      setCookieHeaders.forEach((cookie: string) => {
+        // console.log(cookie, "for each cookie");
+
+        const parsedCookie = parse(cookie);
+        if (parsedCookie["accessToken"]) {
+          accessTokenObject = parsedCookie;
+        }
+        if (parsedCookie["refreshToken"]) {
+          refreshTokenObject = parsedCookie;
+        }
+      });
+    } else {
+      throw new Error("No Set-Cookie header found");
+    }
+
+    // console.log({
+    //   accessTokenObject,
+    //   refreshTokenObject,
+    // });
+
+    if (!accessTokenObject) {
+      throw new Error("Token not found in cookie!");
+    }
+
+    if (!refreshTokenObject) {
+      throw new Error("Token not found in cookie!");
+    }
+
+    const cookieStore = await cookies();
+
+    cookieStore.set("accessToken", accessTokenObject.accessToken, {
+      secure: true,
+      httpOnly: true,
+      maxAge: parseInt(accessTokenObject["Max-Age"]) || 1000 * 60 * 60,
+      path: accessTokenObject.Path || "/",
+      sameSite: accessTokenObject["SameSite"] || "none",
+    });
+
+    cookieStore.set("refreshToken", refreshTokenObject.refreshToken, {
+      secure: true,
+      httpOnly: true,
+      maxAge:
+        parseInt(refreshTokenObject["Max-Age"]) || 1000 * 60 * 60 * 24 * 90,
+      path: refreshTokenObject.Path || "/",
+      sameSite: refreshTokenObject["SameSite"] || "none",
+    });
+
+    // console.log({
+    //   res,
+    //   result,
+    // });
+
+    return result;
   } catch (error) {
     console.log(error);
     return { error: "Login failed!" };
