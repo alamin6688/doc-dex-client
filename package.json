@@ -19,6 +19,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cookie": "^1.1.1",
+    "framer-motion": "^12.23.25",
+    "gsap": "^3.13.0",
     "jsonwebtoken": "^9.0.3",
     "lightswind": "^3.1.20",
     "lucide-react": "^0.555.0",
