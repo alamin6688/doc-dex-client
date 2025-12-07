@@ -1,12 +1,12 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { getIconComponent } from "@/lib/icon-mapper";
 import { cn } from "@/lib/utils";
 import { NavSection } from "@/types/dashboard.interface";
 import { UserInfo } from "@/types/user.interface";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Separator } from "@radix-ui/react-separator";
-import { Bell } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -44,10 +44,9 @@ const DashboardSidebarContent = ({
               <div className="space-y-1">
                 {section.items.map((item) => {
                   const isActive = pathname === item.href;
-                  // const Icon = getIconComponent(item.icon);
+                  const Icon = getIconComponent(item.icon);
 
-
-                  const Icon = <Bell />;
+  
 
                   return (
                     <Link
@@ -60,8 +59,7 @@ const DashboardSidebarContent = ({
                           : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                       )}
                     >
-                      {/* <Icon className="h-4 w-4" /> */}
-                      <Bell className="h-4 w-4" />
+                      <Icon className="h-4 w-4" />
                       <span className="flex-1">{item.title}</span>
                       {item.badge && (
                         <Badge

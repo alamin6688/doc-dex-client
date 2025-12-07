@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { SheetTitle } from "@/components/ui/sheet";
-// import { getIconComponent } from "@/lib/icon-mapper";
+import { getIconComponent } from "@/lib/icon-mapper";
 import { cn } from "@/lib/utils";
 import { NavSection } from "@/types/dashboard.interface";
 import { UserInfo } from "@/types/user.interface";
@@ -44,7 +44,7 @@ const DashboardMobileSidebar = ({
                 </h4>
               )}
               <div className="space-y-1">
-                {/* {section.items.map((item) => {
+                {section.items.map((item) => {
                   const isActive = pathname === item.href;
                   const Icon = getIconComponent(item.icon);
 
@@ -68,7 +68,7 @@ const DashboardMobileSidebar = ({
                       )}
                     </Link>
                   );
-                })} */}
+                })}
               </div>
               {sectionIdx < navItems.length - 1 && (
                 <Separator className="my-4" />
