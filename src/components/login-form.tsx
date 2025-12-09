@@ -7,6 +7,7 @@ import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { loginUser } from "@/services/auth/loginUser";
 import { toast } from "sonner";
+import Link from "next/link";
 
 const LoginForm = ({ redirect }: { redirect?: string }) => {
   const [state, formAction, ispending] = useActionState(loginUser, null);
@@ -78,12 +79,12 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
               </a>
             </FieldDescription>
             <FieldDescription className="px-6 text-center">
-              <a
+              <Link
                 href="/forget-password"
                 className="text-blue-600 hover:underline"
               >
                 Forgot password?
-              </a>
+              </Link>
             </FieldDescription>
           </Field>
         </FieldGroup>

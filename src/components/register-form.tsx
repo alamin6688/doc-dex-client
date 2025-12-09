@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { toast } from "sonner";
+import Link from "next/link";
 
 const RegisterForm = () => {
   const [state, formAction, isPending] = useActionState(registerPatient, null);
@@ -112,9 +113,9 @@ const RegisterForm = () => {
 
             <FieldDescription className="px-6 text-center">
               Already have an account?{" "}
-              <a href="/login" className="text-blue-600 hover:underline">
+              <Link href="/login" className="text-blue-600 hover:underline">
                 Sign in
-              </a>
+              </Link>
             </FieldDescription>
           </Field>
         </FieldGroup>
