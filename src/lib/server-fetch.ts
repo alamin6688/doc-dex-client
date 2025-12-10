@@ -1,3 +1,4 @@
+import { getCookie } from "@/services/auth/tokenHandlers";
 
 
 
@@ -12,14 +13,14 @@ const serverFetchHelper = async (
   const { headers, ...restOptions } = options;
   console.log({ body: options.body });
 
-  // const accessToken = await getCookie("accessToken");
+  const accessToken = await getCookie("accessToken");
 
   const response = await fetch(`${BACKEND_API_URL}${endpoint}`, {
     headers: {
       ...headers,
       // ...(accessToken ? { "Authorization": `Bearer ${accessToken}` } : {}),
       // ...(accessToken ? { "Authorization": accessToken } : {}),
-      // Cookie: accessToken ? `accessToken=${accessToken}` : "",
+      Cookie: accessToken ? `accessToken=${accessToken}` : "",
     },
     ...restOptions,
   });
