@@ -90,7 +90,7 @@ export async function resetPassword(_prevState: any, formData: FormData) {
 
     const verifiedToken = jwt.verify(
       accessToken as string,
-      process.env.JWT_SECRET!
+      process.env.access_token_secret!
     ) as jwt.JwtPayload;
 
     const userRole: UserRole = verifiedToken.role;

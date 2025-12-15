@@ -50,6 +50,7 @@ export const loginUser = async (
     if (setCookieHeaders && setCookieHeaders.length > 0) {
       setCookieHeaders.forEach((cookie: string) => {
         const parsedCookie = parse(cookie);
+
         if (parsedCookie["accessToken"]) {
           accessTokenObject = parsedCookie;
         }
@@ -62,11 +63,11 @@ export const loginUser = async (
     }
 
     if (!accessTokenObject) {
-      throw new Error("Token not found in cookie!");
+      throw new Error("Tokens not found in cookies");
     }
 
     if (!refreshTokenObject) {
-      throw new Error("Token not found in cookie!");
+      throw new Error("Tokens not found in cookies");
     }
 
     await setCookie("accessToken", accessTokenObject.accessToken, {
@@ -85,10 +86,9 @@ export const loginUser = async (
       path: refreshTokenObject.Path || "/",
       sameSite: refreshTokenObject["SameSite"] || "none",
     });
-
     const verifiedToken: JwtPayload | string = jwt.verify(
       accessTokenObject.accessToken,
-      process.env.ACCESS_TOKEN_SECRET as string
+      process.env.access_token_secret as string
     );
 
     if (typeof verifiedToken === "string") {
@@ -99,6 +99,19 @@ export const loginUser = async (
 
     if (!result.success) {
       throw new Error(result.message || "Login failed");
+    }
+
+    if (redirectTo && result.data.needPasswordChange) {
+      const requestedPath = redirectTo.toString();
+      if (isValidRedirectForRole(requestedPath, userRole)) {
+        redirect(`/reset-password?redirect=${requestedPath}`);
+      } else {
+        redirect("/reset-password");
+      }
+    }
+
+    if (result.data.needPasswordChange) {
+      redirect("/reset-password");
     }
 
     if (redirectTo) {
@@ -116,7 +129,6 @@ export const loginUser = async (
     if (error?.digest?.startsWith("NEXT_REDIRECT")) {
       throw error;
     }
-
     console.log(error);
     return {
       success: false,
