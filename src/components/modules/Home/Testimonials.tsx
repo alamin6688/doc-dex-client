@@ -1,95 +1,231 @@
-import { Star, Quote } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
-import samplePhoto from "../../../assets/images/hero-doctor.jpg";
+"use client";
+import { Star, Quote, Video, ThumbsUp } from "lucide-react";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-const testimonials = [
+type Review = {
+  id: number;
+  name: string;
+  text: string;
+  rating: number;
+  color: string;
+  initials: string;
+  date: string;
+  verified: boolean;
+};
+const reviews: Review[] = [
   {
-    name: "Robert Fox",
-    role: "Patient",
-    image: samplePhoto,
-    quote:
-      "The care and professionalism I received were outstanding. The doctors were knowledgeable and the staff was incredibly supportive throughout my treatment.",
+    id: 1,
+    name: "Amanda Peterson",
+    text: "The AI matching system is incredible! Found me a cardiologist who perfectly understood my condition. The video quality was crystal clear and the doctor was very professional.",
     rating: 5,
+    color: "from-rose-500 to-rose-600",
+    initials: "AP",
+    date: "2 weeks ago",
+    verified: true,
   },
   {
-    name: "Jane Cooper",
-    role: "Patient",
-    image: samplePhoto,
-    quote:
-      "A seamless experience from booking an appointment to the consultation. The use of technology for prescriptions and follow-ups is very convenient.",
+    id: 2,
+    name: "Robert Kim",
+    text: "Doc Dex saved me hours of research. Within minutes, I was matched with a specialist who had experience with my specific symptoms. The entire process was seamless.",
     rating: 5,
+    color: "from-blue-500 to-blue-600",
+    initials: "RK",
+    date: "1 month ago",
+    verified: true,
   },
   {
-    name: "Wade Warren",
-    role: "Patient",
-    image: samplePhoto,
-    quote:
-      "I highly recommend their services. The specialists are top-notch, and they truly focus on preventive care which has greatly improved my health.",
+    id: 3,
+    name: "Maria Santos",
+    text: "As a busy mom, video consultations are a lifesaver. Got my daughter checked by a pediatrician without leaving home. The AI symptom checker was surprisingly accurate!",
     rating: 5,
+    color: "from-emerald-500 to-emerald-600",
+    initials: "MS",
+    date: "3 weeks ago",
+    verified: true,
   },
 ];
-
-const Testimonials = () => {
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
+    },
+  },
+};
+export function Reviews() {
   return (
-    <section className="bg-card py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-foreground">
-            What Our Client Says
-          </h2>
-          <p className="text-muted-foreground mt-4">
-            We are committed to providing you with the best medical and
-            healthcare services.
-          </p>
+    <section
+      id="reviews"
+      className="py-32 bg-linear-to-b from-slate-50/50 to-white relative overflow-hidden container mx-auto"
+    >
+      {/* Background pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.05),transparent_50%)]" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+          >
+            <span className="bg-linear-to-br from-gray-900 to-gray-700 bg-clip-text text-transparent">
+              Loved by Patients
+            </span>
+          </motion.h2>
+          <motion.p
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.6,
+              delay: 0.1,
+            }}
+            className="text-xl text-gray-600 max-w-2xl mx-auto font-light"
+          >
+            Real experiences from patients who received quality care
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {testimonials.map((testimonial) => (
-            <Card key={testimonial.name} className="bg-background relative">
-              <CardContent className="p-8">
-                <Quote
-                  className="absolute top-4 left-4 text-primary"
-                  size={48}
-                />
-                <div className="relative z-10">
-                  <p className="text-muted-foreground mb-6">
-                    {testimonial.quote}
-                  </p>
-                  <div className="flex items-center">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      width={64}
-                      height={64}
-                      className="rounded-full"
-                    />
-                    <div className="ml-4">
-                      <h4 className="font-bold text-foreground">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-muted-foreground text-sm">
-                        {testimonial.role}
-                      </p>
-                      <div className="flex mt-1">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className="text-yellow-400 fill-current"
-                            size={16}
-                          />
-                        ))}
-                      </div>
-                    </div>
+        {/* Reviews Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            margin: "-100px",
+          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {reviews.map((review) => (
+            <motion.div
+              key={review.id}
+              variants={cardVariants}
+              className="group relative bg-white/80 backdrop-blur-sm border border-gray-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
+            >
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-linear-to-br from-blue-50/30 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="relative z-10">
+                {/* Quote icon with modern styling */}
+                <div className="absolute -top-4 -right-4">
+                  <div className="w-12 h-12 bg-linear-to-br from-blue-100 to-teal-100 rounded-2xl flex items-center justify-center rotate-6 group-hover:rotate-12 transition-transform duration-500">
+                    <Quote className="w-6 h-6 text-blue-600" />
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+
+                {/* Badges */}
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full text-xs font-semibold">
+                    <Video className="w-3 h-3" />
+                    Video Call
+                  </div>
+                  {review.verified && (
+                    <div className="inline-flex items-center gap-1 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold">
+                      <ThumbsUp className="w-3 h-3" />
+                      Verified
+                    </div>
+                  )}
+                </div>
+
+                {/* Stars */}
+                <div className="flex gap-1 mb-5">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 text-amber-400 fill-amber-400"
+                    />
+                  ))}
+                </div>
+
+                {/* Review Text */}
+                <p className="text-gray-700 leading-relaxed mb-6 text-[15px]">
+                  {review.text}
+                </p>
+
+                {/* Author */}
+                <div className="flex items-center gap-3 pt-6 border-t border-gray-100">
+                  <div
+                    className={`w-12 h-12 bg-linear-to-br ${review.color} rounded-xl flex items-center justify-center shadow-lg`}
+                  >
+                    <span className="text-white font-bold text-sm">
+                      {review.initials}
+                    </span>
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900">{review.name}</div>
+                    <div className="text-sm text-gray-500">{review.date}</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Trust badge */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.6,
+            delay: 0.4,
+          }}
+          className="text-center mt-12"
+        >
+          {/* <div className="inline-flex items-center gap-2 bg-linear-to-r from-green-50 to-emerald-50 border border-green-200/50 text-green-700 px-6 py-3 rounded-full text-sm font-semibold">
+            <Star className="w-4 h-4 fill-green-600 text-green-600" />
+            4.9/5 average rating from 1,200+ reviews
+          </div> */}
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default Testimonials;
+}

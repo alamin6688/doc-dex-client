@@ -54,7 +54,7 @@ export function Steps() {
       {/* Modern background elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.05),transparent_50%),radial-gradient(circle_at_70%_60%,rgba(20,184,166,0.05),transparent_50%)]" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.div

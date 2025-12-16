@@ -81,7 +81,7 @@ export default function Hero() {
           aria-hidden="true"
         />
 
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative container mx-auto">
           {/* 👇 MAIN MOTION CONTAINER (Steps-style) */}
           <motion.div
             variants={containerVariants}
