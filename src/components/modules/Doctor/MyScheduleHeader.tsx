@@ -1,46 +1,50 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import SpecialitiesFormDialog from "./SpecialitiesFormDialog";
+import BookScheduleDialog from "./BookScheduleDialog";
 
-const SpecialitiesManagementHeader = () => {
+interface MySchedulesHeaderProps {
+  availableSchedules: any[];
+}
+
+const MySchedulesHeader = ({ availableSchedules }: MySchedulesHeaderProps) => {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleSuccess = () => {
+    setIsDialogOpen(false);
     startTransition(() => {
       router.refresh();
     });
   };
 
-  const [dialogKey, setDialogKey] = useState(0);
-
   const handleOpenDialog = () => {
-    setDialogKey((prev) => prev + 1); // Force remount
     setIsDialogOpen(true);
   };
 
   const handleCloseDialog = () => {
     setIsDialogOpen(false);
   };
+
   return (
     <>
-      <SpecialitiesFormDialog
-        key={dialogKey}
+      <BookScheduleDialog
         open={isDialogOpen}
         onClose={handleCloseDialog}
         onSuccess={handleSuccess}
+        availableSchedules={availableSchedules}
       />
 
       <ManagementPageHeader
-        title="Specialties Management"
-        description="Manage Specialties information and details"
+        title="My Schedules"
+        description="Manage your availability and time slots for patient consultations"
         action={{
-          label: "Add Specialty",
+          label: "Book Schedule",
           icon: Plus,
           onClick: handleOpenDialog,
         }}
@@ -49,4 +53,4 @@ const SpecialitiesManagementHeader = () => {
   );
 };
 
-export default SpecialitiesManagementHeader;
+export default MySchedulesHeader;
