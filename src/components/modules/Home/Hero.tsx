@@ -1,3 +1,5 @@
+"use client";
+
 import { StatCardProps } from "@/types/heroProps";
 import {
   Video,
@@ -7,6 +9,40 @@ import {
   Brain,
   BookText,
 } from "lucide-react";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
+
+/* ======================
+   Animation Variants
+====================== */
+
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
+
+/* ======================
+   Stat Card
+====================== */
 
 function StatCard({ icon, value, label, bgColor, iconColor }: StatCardProps) {
   return (
@@ -22,10 +58,14 @@ function StatCard({ icon, value, label, bgColor, iconColor }: StatCardProps) {
   );
 }
 
+/* ======================
+   Hero Component
+====================== */
+
 export default function Hero() {
   return (
     <div className="w-full relative">
-      {/* Radial Gradient Background from Bottom */}
+      {/* Radial Gradient Background */}
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -33,44 +73,69 @@ export default function Hero() {
             "radial-gradient(125% 125% at 50% 90%, #fff 40%, #155DFC 100%)",
         }}
       />
-      {/* Your Content/Components */}
-      <section className="relative  w-full overflow-hidden py-12 px-4 sm:px-6 lg:px-8">
-        {/* Decorative blur elements */}
+
+      <section className="relative w-full overflow-hidden py-12 px-4 sm:px-6 lg:px-8">
+        {/* Decorative blur */}
         <div
           className="absolute top-20 right-[10%] w-80 h-80 bg-blue-200/40 rounded-full blur-3xl pointer-events-none"
           aria-hidden="true"
         />
 
-        {/* Content container */}
         <div className="relative max-w-7xl mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
+          {/* 👇 MAIN MOTION CONTAINER (Steps-style) */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto text-center"
+          >
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-blue-100 rounded-full px-4 py-2 mb-8 sm:mb-12">
-              <Video className="w-4 h-4 text-blue-700" strokeWidth={2} />
-              <span className="text-blue-700 text-xs sm:text-sm">
+            <motion.div
+              className="inline-flex items-center gap-2 bg-blue-100 rounded-full px-4 py-2 mb-8 sm:mb-12"
+            >
+              <motion.span variants={itemVariants}>
+                <Video className="w-4 h-4 text-blue-700" strokeWidth={2} />
+              </motion.span>
+              <motion.span
+                variants={itemVariants}
+                className="text-blue-700 text-xs sm:text-sm"
+              >
                 Online Video Consultations Available 24/7
-              </span>
-            </div>
+              </motion.span>
+            </motion.div>
 
             {/* Heading */}
             <h1 className="mb-6 sm:mb-8">
-              <span className="block text-3xl md:text-4xl font-bold text-gray-900">
+              <motion.span
+                variants={itemVariants}
+                className="block text-3xl md:text-4xl font-bold text-gray-900"
+              >
                 Connect with Doctors
-              </span>
-              <span className="block text-3xl md:text-4xl pt-1 font-bold text-blue-600">
+              </motion.span>
+              <motion.span
+                variants={itemVariants}
+                className="block text-3xl md:text-4xl pt-1 font-bold text-blue-600"
+              >
                 Instantly via Video Call
-              </span>
+              </motion.span>
             </h1>
 
             {/* Description */}
-            <p className="text-gray-600 max-w-2xl mx-auto mb-8 sm:mb-12 px-4">
+            <motion.p
+              variants={itemVariants}
+              className="text-gray-600 max-w-2xl mx-auto mb-8 sm:mb-12 px-4"
+            >
               Get expert medical advice from the comfort of your home. Our
               AI-powered system matches you with the right specialist based on
               your symptoms, then connects you via secure video consultation.
-            </p>
+            </motion.p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 sm:mb-16">
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 sm:mb-16"
+            >
               <button className="group w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-8 py-4 shadow-lg shadow-blue-600/25 transition-all hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5 flex items-center justify-center gap-2">
                 <Video className="w-5 h-5" strokeWidth={2} />
                 <span>Start Video Consultation</span>
@@ -79,17 +144,18 @@ export default function Hero() {
                   strokeWidth={2}
                 />
               </button>
-              <button
-                className="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 rounded-xl px-8 py-4 transition-all hover:border-gray-300
-            flex items-center justify-center gap-2"
-              >
+
+              <button className="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 rounded-xl px-8 py-4 transition-all hover:border-gray-300 flex items-center justify-center gap-2">
                 <BookText className="w-5 h-5 text-blue-600" strokeWidth={2} />
-                <span>Book Appoinment</span>
+                <span>Book Appointment</span>
               </button>
-            </div>
+            </motion.div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+            <motion.div
+              variants={itemVariants}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto"
+            >
               <StatCard
                 icon={<Users className="w-6 h-6" strokeWidth={2} />}
                 value="10,000+"
@@ -111,8 +177,8 @@ export default function Hero() {
                 bgColor="bg-purple-100"
                 iconColor="text-purple-600"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>
