@@ -1,3 +1,4 @@
+import { HealthcareInfo } from "@/components/modules/Home/HealthcareInfo";
 import Hero from "@/components/modules/Home/Hero";
 import Specialities from "@/components/modules/Home/Specialties";
 import { Steps } from "@/components/modules/Home/Steps";
@@ -21,6 +22,7 @@ export default function Home() {
         <Hero />
         <Specialities />
         <TopRatedDoctors />
+        <HealthcareInfo />
         <Steps />
         <Reviews />
       </main>

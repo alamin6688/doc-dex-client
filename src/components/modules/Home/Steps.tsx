@@ -41,7 +41,7 @@ const steps = [
     id: 4,
     title: "Get Treatment",
     description:
-      "Receive your personalized care plan, medical report and prescriptions digitally.",
+      "Receive your personalized medical report and prescriptions digitally.",
     icon: FileText,
     gradient: "from-indigo-500 to-indigo-600",
     bgGradient: "from-indigo-50 to-indigo-100/50",
