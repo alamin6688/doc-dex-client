@@ -176,7 +176,7 @@ export function Steps() {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-gray-900 transition-colors items-center flex gap-2 justify-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-gray-900 transition-colors items-center flex gap-2 justify-center text-center">
                     {step.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed text-center">

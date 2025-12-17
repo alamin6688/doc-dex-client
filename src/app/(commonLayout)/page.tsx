@@ -2,8 +2,8 @@ import { HealthcareInfo } from "@/components/modules/Home/HealthcareInfo";
 import Hero from "@/components/modules/Home/Hero";
 import Specialities from "@/components/modules/Home/Specialties";
 import { Steps } from "@/components/modules/Home/Steps";
-import { Reviews } from "@/components/modules/Home/Testimonials";
-import TopRatedDoctors from "@/components/modules/Home/TopRatedDoctors";
+import { Reviews } from "@/components/modules/Home/Reviews";
+import { FeaturedDoctors } from "@/components/modules/Home/TopRatedDoctors";
 import Head from "next/head";
 
 export default function Home() {
@@ -20,8 +20,8 @@ export default function Home() {
       </Head>
       <main>
         <Hero />
+        <FeaturedDoctors />
         <Specialities />
-        <TopRatedDoctors />
         <HealthcareInfo />
         <Steps />
         <Reviews />
