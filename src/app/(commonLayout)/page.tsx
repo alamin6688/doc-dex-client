@@ -1,10 +1,11 @@
 import { HealthcareInfo } from "@/components/modules/Home/HealthcareInfo";
-import Hero from "@/components/modules/Home/Hero";
+// import Hero from "@/components/modules/Home/Hero";
 import Specialities from "@/components/modules/Home/Specialties";
 import { Steps } from "@/components/modules/Home/Steps";
 import { Reviews } from "@/components/modules/Home/Reviews";
 import { FeaturedDoctors } from "@/components/modules/Home/TopRatedDoctors";
 import Head from "next/head";
+import { Hero } from "@/components/modules/Home/Hero";
 
 export default function Home() {
   return (

@@ -124,7 +124,7 @@ const cardVariants: Variants = {
 
 export function FeaturedDoctors() {
   return (
-    <section className="w-full bg-linear-to-br from-blue-50 via-white to-purple-50 py-20 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-[#F9FAFB] py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
