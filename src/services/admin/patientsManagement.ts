@@ -4,6 +4,7 @@
 import { serverFetch } from "@/lib/server-fetch";
 import { zodValidator } from "@/lib/zodValidator";
 import { updatePatientZodSchema } from "@/zod/patient.validation";
+import { revalidateTag } from "next/cache";
 
 /**
  * GET ALL PATIENTS
@@ -11,8 +12,21 @@ import { updatePatientZodSchema } from "@/zod/patient.validation";
  */
 export async function getPatients(queryString?: string) {
   try {
+    const searchParams = new URLSearchParams(queryString);
+    const page = searchParams.get("page") || "1";
+    const searchTerm = searchParams.get("searchTerm") || "all";
     const response = await serverFetch.get(
-      `/patient${queryString ? `?${queryString}` : ""}`
+      `/patient${queryString ? `?${queryString}` : ""}`,
+      {
+        next: {
+          tags: [
+            "patients-list",
+            `patients-page-${page}`,
+            `patients-search-${searchTerm}`,
+          ],
+          revalidate: 180, // faster patient list updates
+        },
+      },
     );
     const result = await response.json();
     return result;
@@ -20,11 +34,7 @@ export async function getPatients(queryString?: string) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }
@@ -35,18 +45,19 @@ export async function getPatients(queryString?: string) {
  */
 export async function getPatientById(id: string) {
   try {
-    const response = await serverFetch.get(`/patient/${id}`);
+    const response = await serverFetch.get(`/patient/${id}`, {
+      next: {
+        tags: [`patient-${id}`, "patients-list"],
+        revalidate: 180, // more responsive patient profile updates
+      },
+    });
     const result = await response.json();
     return result;
   } catch (error: any) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }
@@ -58,7 +69,7 @@ export async function getPatientById(id: string) {
 export async function updatePatient(
   id: string,
   _prevState: any,
-  formData: FormData
+  formData: FormData,
 ) {
   const validationPayload: any = {
     name: formData.get("name") as string,
@@ -91,6 +102,13 @@ export async function updatePatient(
     });
 
     const result = await response.json();
+
+    if (result.success) {
+      revalidateTag("patients-list", { expire: 0 });
+      revalidateTag(`patient-${id}`, { expire: 0 });
+      revalidateTag("patient-dashboard-meta", { expire: 0 });
+      revalidateTag("admin-dashboard-meta", { expire: 0 });
+    }
     return result;
   } catch (error: any) {
     console.error("Update patient error:", error);
@@ -113,16 +131,16 @@ export async function softDeletePatient(id: string) {
   try {
     const response = await serverFetch.delete(`/patient/soft/${id}`);
     const result = await response.json();
+    if (result.success) {
+      revalidateTag("patients-list", { expire: 0 });
+      revalidateTag(`patient-${id}`, { expire: 0 });
+    }
     return result;
   } catch (error: any) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }
@@ -135,16 +153,16 @@ export async function deletePatient(id: string) {
   try {
     const response = await serverFetch.delete(`/patient/${id}`);
     const result = await response.json();
+    if (result.success) {
+      revalidateTag("patients-list", { expire: 0 });
+      revalidateTag(`patient-${id}`, { expire: 0 });
+    }
     return result;
   } catch (error: any) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }

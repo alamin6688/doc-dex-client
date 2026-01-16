@@ -15,7 +15,7 @@ export async function createSpeciality(_prevState: any, formData: FormData) {
 
   const validatedPayload = zodValidator(
     validationPayload,
-    createSpecialityZodSchema
+    createSpecialityZodSchema,
   );
 
   if (!validatedPayload.success && validatedPayload.errors) {
@@ -47,7 +47,7 @@ export async function createSpeciality(_prevState: any, formData: FormData) {
     const result = await response.json();
 
     if (result.success) {
-      revalidateTag("specialities-list", "max");
+      revalidateTag("specialities-list", { expire: 0 });
     }
 
     return result;
@@ -55,11 +55,7 @@ export async function createSpeciality(_prevState: any, formData: FormData) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
       formData: validationPayload,
     };
   }
@@ -68,8 +64,10 @@ export async function createSpeciality(_prevState: any, formData: FormData) {
 export async function getSpecialities() {
   try {
     const response = await serverFetch.get("/specialties", {
-      cache: "force-cache",
-      next: { tags: ["specialities-list"] },
+      next: {
+        tags: ["specialities-list"],
+        revalidate: 600, // 10 minutes - specialties rarely change
+      },
     });
     const result = await response.json();
     return result;
@@ -77,11 +75,7 @@ export async function getSpecialities() {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }
@@ -90,16 +84,17 @@ export async function deleteSpeciality(id: string) {
   try {
     const response = await serverFetch.delete(`/specialties/${id}`);
     const result = await response.json();
+    if (result.success) {
+      revalidateTag("specialities-list", { expire: 0 });
+      revalidateTag(`specialty-${id}`, { expire: 0 });
+      revalidateTag("doctors-list", { expire: 0 }); // Doctors have
+    }
     return result;
   } catch (error: any) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }

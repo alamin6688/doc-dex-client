@@ -8,6 +8,7 @@ import {
   createDoctorZodSchema,
   updateDoctorZodSchema,
 } from "@/zod/doctors.validation";
+import { revalidateTag } from "next/cache";
 
 export async function createDoctor(_prevState: any, formData: FormData) {
   // Parse specialties array
@@ -44,7 +45,7 @@ export async function createDoctor(_prevState: any, formData: FormData) {
 
   const validatedPayload = zodValidator(
     validationPayload,
-    createDoctorZodSchema
+    createDoctorZodSchema,
   );
 
   if (!validatedPayload.success && validatedPayload.errors) {
@@ -91,16 +92,19 @@ export async function createDoctor(_prevState: any, formData: FormData) {
 
     const result = await response.json();
 
+    if (result.success) {
+      revalidateTag("doctors-list", { expire: 0 });
+      revalidateTag("doctors-page-1", { expire: 0 });
+      revalidateTag("doctors-search-all", { expire: 0 });
+      revalidateTag("admin-dashboard-meta", { expire: 0 });
+      revalidateTag("doctor-dashboard-meta", { expire: 0 });
+    }
     return result;
   } catch (error: any) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
       formData: validationPayload,
     };
   }
@@ -108,8 +112,21 @@ export async function createDoctor(_prevState: any, formData: FormData) {
 
 export async function getDoctors(queryString?: string) {
   try {
+    const searchParams = new URLSearchParams(queryString);
+    const page = searchParams.get("page") || "1";
+    const searchTerm = searchParams.get("searchTerm") || "all";
     const response = await serverFetch.get(
-      `/doctor${queryString ? `?${queryString}` : ""}`
+      `/doctor${queryString ? `?${queryString}` : ""}`,
+      {
+        next: {
+          tags: [
+            "doctors-list",
+            `doctors-page-${page}`,
+            `doctors-search-${searchTerm}`,
+          ],
+          revalidate: 180, // faster doctor list updates
+        },
+      },
     );
     const result = await response.json();
     return result;
@@ -117,29 +134,27 @@ export async function getDoctors(queryString?: string) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }
 
 export async function getDoctorById(id: string) {
   try {
-    const response = await serverFetch.get(`/doctor/${id}`);
+    const response = await serverFetch.get(`/doctor/${id}`, {
+      next: {
+        tags: [`doctor-${id}`, "doctors-list"],
+        // Reduced to 180s for more responsive doctor profile updates
+        revalidate: 180,
+      },
+    });
     const result = await response.json();
     return result;
   } catch (error: any) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }
@@ -147,7 +162,7 @@ export async function getDoctorById(id: string) {
 export async function updateDoctor(
   id: string,
   _prevState: any,
-  formData: FormData
+  formData: FormData,
 ) {
   const experienceValue = formData.get("experience");
   const appointmentFeeValue = formData.get("appointmentFee");
@@ -192,7 +207,7 @@ export async function updateDoctor(
   }
   const validatedPayload = zodValidator(
     validationPayload,
-    updateDoctorZodSchema
+    updateDoctorZodSchema,
   );
 
   if (!validatedPayload.success && validatedPayload.errors) {
@@ -220,16 +235,20 @@ export async function updateDoctor(
       body: JSON.stringify(validatedPayload.data),
     });
     const result = await response.json();
+    if (result.success) {
+      revalidateTag("doctors-list", { expire: 0 });
+      revalidateTag(`doctor-${id}`, { expire: 0 });
+      revalidateTag("doctors-page-1", { expire: 0 });
+      revalidateTag("doctors-search-all", { expire: 0 });
+      revalidateTag("admin-dashboard-meta", { expire: 0 });
+      revalidateTag("doctor-dashboard-meta", { expire: 0 });
+    }
     return result;
   } catch (error: any) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
       formData: validationPayload,
     };
   }
@@ -239,17 +258,20 @@ export async function softDeleteDoctor(id: string) {
   try {
     const response = await serverFetch.delete(`/doctor/soft/${id}`);
     const result = await response.json();
-
+    if (result.success) {
+      revalidateTag("doctors-list", { expire: 0 });
+      revalidateTag(`doctor-${id}`, { expire: 0 });
+      revalidateTag("doctors-page-1", { expire: 0 });
+      revalidateTag("doctors-search-all", { expire: 0 });
+      revalidateTag("admin-dashboard-meta", { expire: 0 });
+      revalidateTag("doctor-dashboard-meta", { expire: 0 });
+    }
     return result;
   } catch (error: any) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }
@@ -257,17 +279,20 @@ export async function deleteDoctor(id: string) {
   try {
     const response = await serverFetch.delete(`/doctor/${id}`);
     const result = await response.json();
-
+    if (result.success) {
+      revalidateTag("doctors-list", { expire: 0 });
+      revalidateTag(`doctor-${id}`, { expire: 0 });
+      revalidateTag("doctors-page-1", { expire: 0 });
+      revalidateTag("doctors-search-all", { expire: 0 });
+      revalidateTag("admin-dashboard-meta", { expire: 0 });
+      revalidateTag("doctor-dashboard-meta", { expire: 0 });
+    }
     return result;
   } catch (error: any) {
     console.log(error);
     return {
       success: false,
-      message: `${
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+      message: `${process.env.NODE_ENV === "development" ? error.message : "Something went wrong"}`,
     };
   }
 }

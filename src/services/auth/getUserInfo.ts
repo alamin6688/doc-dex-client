@@ -10,8 +10,10 @@ export const getUserInfo = async (): Promise<UserInfo | any> => {
   let userInfo: UserInfo | any;
   try {
     const response = await serverFetch.get("/auth/me", {
-      cache: "force-cache",
-      next: { tags: ["user-info"] },
+      next: {
+        tags: ["user-info"],
+        revalidate: 180,
+      },
     });
 
     const result = await response.json();
@@ -25,7 +27,7 @@ export const getUserInfo = async (): Promise<UserInfo | any> => {
 
       const verifiedToken = jwt.verify(
         accessToken,
-        process.env.access_token_secret as string
+        process.env.JWT_SECRET as string,
       ) as JwtPayload;
 
       userInfo = {
