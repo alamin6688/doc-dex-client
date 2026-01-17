@@ -9,7 +9,7 @@ export async function getDashboardMetaData() {
     const userInfo = await getUserInfo();
     const cacheTag = `${userInfo.role.toLowerCase()}-dashboard-meta`;
 
-    const response = await serverFetch.get("/meta", {
+    const response = await serverFetch.get("/metadata", {
       next: {
         tags: [cacheTag, "dashboard-meta", "meta-data"],
         // Faster revalidation for dashboard (30 seconds)
