@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { formatDateTime, getInitials } from "@/lib/formatters";
-
 import { IDoctor } from "@/types/doctor.interface";
 import {
   Briefcase,
@@ -47,7 +46,7 @@ const DoctorViewDetailDialog = ({
 
         <div className="flex-1 overflow-y-auto px-6 pb-6">
           {/* Doctor Profile Header */}
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 p-6 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 rounded-lg mb-6">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 rounded-lg mb-6">
             <Avatar className="h-24 w-24 border-4 border-white shadow-lg">
               <AvatarImage src={doctor?.profilePhoto} alt={doctor?.name} />
               <AvatarFallback className="text-2xl">
@@ -159,7 +158,7 @@ const DoctorViewDetailDialog = ({
                           variant="outline"
                           className="px-4 py-2 text-sm"
                         >
-                          {specialty.specialties?.title || "Unknown"}
+                          {specialty.specialities?.title || "Unknown"}
                         </Badge>
                       ))}
                     </div>
