@@ -1,4 +1,4 @@
-// import DoctorGridSkeleton from "@/components/modules/Consultation/DoctorGridSkeleton";
+import DoctorGridSkeleton from "@/components/modules/Consultation/DoctorGridSkeleton";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -35,7 +35,7 @@ export default function ConsultationLoading() {
         </div>
 
         {/* Doctor Grid Skeleton */}
-        {/* <DoctorGridSkeleton count={6} /> */}
+        <DoctorGridSkeleton count={6} />
 
         {/* Pagination Skeleton */}
         <div className="flex justify-center gap-2">
