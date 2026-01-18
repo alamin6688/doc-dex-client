@@ -7,7 +7,11 @@ import { FeaturedDoctors } from "@/components/modules/Home/TopRatedDoctors";
 import Head from "next/head";
 import { Hero } from "@/components/modules/Home/Hero";
 
-export default function Home() {
+import { getDoctors } from "@/services/admin/doctorManagement";
+
+export default async function Home() {
+  const { data: doctors } = await getDoctors();
+
   return (
     <>
       <Head>
@@ -21,7 +25,7 @@ export default function Home() {
       </Head>
       <main>
         <Hero />
-        <FeaturedDoctors />
+        <FeaturedDoctors doctors={doctors} />
         <Specialities />
         <HealthcareInfo />
         <Steps />

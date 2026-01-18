@@ -2,8 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { TableSkeleton } from "@/components/shared/TableSkeleton";
-import { getDoctors } from "@/services/admin/doctorManagement";
-import { getSpecialities } from "@/services/admin/specialitiesManagement";
+import { IDoctor } from "@/types/doctor.interface";
+
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import {
@@ -19,14 +19,6 @@ import Link from "next/link";
 
 export const revalidate = 600;
 
-// Fetch doctors and specialties in parallel
-const [doctorsResponse, specialtiesResponse] = await Promise.all([
-  getDoctors(),
-  getSpecialities(),
-]);
-
-const doctors = doctorsResponse?.data || [];
-// const specialties = specialtiesResponse?.data || [];
 
 // interface Doctor {
 //   id: string;
@@ -148,7 +140,7 @@ const containerVariants: Variants = {
 //   },
 // };
 
-export function FeaturedDoctors() {
+export function FeaturedDoctors({ doctors }: { doctors: IDoctor[] }) {
   return (
     <section className="w-full bg-[#F9FAFB] py-20 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto">
@@ -192,7 +184,7 @@ export function FeaturedDoctors() {
             once: true,
             margin: "-100px",
           }}
-          // className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        // className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           <Suspense fallback={<TableSkeleton columns={3} />}>
             <DoctorGrid doctors={doctors} />
