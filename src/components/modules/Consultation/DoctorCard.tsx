@@ -25,60 +25,66 @@ export default function DoctorCard({ doctor }: DoctorCard) {
   const [showScheduleModal, setShowScheduleModal] = useState(false);
 
   return (
-    <>
-      <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-        <CardHeader className="pb-3">
-          <div className="flex items-start gap-4">
-            <Avatar className="h-16 w-16">
+    <div className="">
+      <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-gray-100 pt-0 gap-1">
+        <CardHeader className="p-0">
+          <div className="items-start gap-4">
+            <Avatar className="h-64 md:h-80 w-full rounded-none">
               <AvatarImage src={doctor.profilePhoto || ""} alt={doctor.name} />
               <AvatarFallback className="text-lg">
                 {getInitials(doctor.name)}
               </AvatarFallback>
             </Avatar>
 
-            <div className="flex-1 min-w-0">
-              <CardTitle className="text-lg line-clamp-1">
-                Dr. {doctor.name}
-              </CardTitle>
-              <CardDescription className="line-clamp-1">
-                {doctor.designation}
-              </CardDescription>
-
-              <div className="flex items-center gap-2 mt-2">
+            <div className="flex-1 min-w-0 pt-6 px-4">
+              <div className="flex items-start justify-between">
+                <div>
+                  <CardTitle className="text-2xl line-clamp-1 font-bold tracking-wide">
+                    Dr. {doctor.name}
+                  </CardTitle>
+                  <CardDescription className="line-clamp-1 font-bold tracking-wider">
+                    {doctor.designation}
+                  </CardDescription>
+                </div>
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                   <span className="text-sm font-medium">
                     {doctor.averageRating?.toFixed(1) || "N/A"}
                   </span>
                 </div>
+              </div>
+
+              <div className="flex items-center justify-between gap-2 mt-3">
                 {doctor.doctorSpecialties &&
                   doctor.doctorSpecialties.length > 0 && (
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="secondary" className="text-xs bg-blue-200">
                       {doctor.doctorSpecialties[0].specialities?.title}
                     </Badge>
                   )}
+                <div>
+                  <div className="flex items-center text-muted-foreground">
+                    <DollarSign className="h-4 w-4 shrink-0 text-green-600" />
+                    <span className="font-semibold text-foreground">
+                      {doctor.appointmentFee}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-3 pb-3">
+        <CardContent className="space-y-3 pb-3 px-4">
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="flex items-center gap-2 text-muted-foreground">
-              <Clock className="h-4 w-4 shrink-0" />
-              <span className="truncate">{doctor.experience} years exp</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <DollarSign className="h-4 w-4 shrink-0" />
-              <span className="font-semibold text-foreground">
-                ${doctor.appointmentFee}
-              </span>
+              <Clock className="h-4 w-4 shrink-0 text-blue-500" />
+              <span className="truncate">{doctor.experience} years of experience</span>
             </div>
           </div>
 
           {doctor.currentWorkingPlace && (
             <div className="flex items-start gap-2 text-sm text-muted-foreground">
-              <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
+              <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-blue-500" />
               <span className="line-clamp-1">{doctor.currentWorkingPlace}</span>
             </div>
           )}
@@ -110,10 +116,10 @@ export default function DoctorCard({ doctor }: DoctorCard) {
           )}
         </CardContent>
 
-        <CardFooter className="pt-3 border-t flex gap-2">
+        <CardFooter className="pt-3 border-t flex gap-2 px-4">
           <Link className="flex-1" href={`/consultation/doctor/${doctor.id}`}>
-            <Button variant="outline" className="w-full">
-              <Eye className="h-4 w-4 mr-2" />
+            <Button variant="outline" className="w-full bg-blue-50">
+              <Eye className="h-4 w-4  text-green-600" />
               View Details
             </Button>
           </Link>
@@ -128,6 +134,6 @@ export default function DoctorCard({ doctor }: DoctorCard) {
         isOpen={showScheduleModal}
         onClose={() => setShowScheduleModal(false)}
       />
-    </>
+    </div>
   );
 }

@@ -32,8 +32,8 @@ const ConsultationPage = async ({
     <div className="container mx-auto px-4 py-8">
       <div className="space-y-6">
         {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Find a Doctor</h1>
+        <div className="text-center">
+          <h1 className="text-3xl font-bold tracking-tight">Find a best doctor you need</h1>
           <p className="text-muted-foreground mt-2">
             Search and book appointments with our qualified healthcare
             professionals

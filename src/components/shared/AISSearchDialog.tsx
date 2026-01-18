@@ -147,9 +147,9 @@ export default function AISearchDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleDialogOpenChange}>
-      <DialogTrigger asChild>
+      <DialogTrigger asChild className="bg-blue-100">
         <Button variant="outline" size="sm" className="gap-2">
-          <Sparkles className="h-4 w-4" />
+          <Sparkles className="h-4 w-4 text-blue-600" />
           <span className="hidden sm:inline">AI Search</span>
         </Button>
       </DialogTrigger>
