@@ -16,7 +16,7 @@ import { loginValidationZodSchema } from "@/zod/auth.validation";
 
 export const loginUser = async (
   _currentState: any,
-  formData: any
+  formData: any,
 ): Promise<any> => {
   try {
     const redirectTo = formData.get("redirect") || null;
@@ -33,7 +33,7 @@ export const loginUser = async (
 
     const validatedPayload = zodValidator(
       payload,
-      loginValidationZodSchema
+      loginValidationZodSchema,
     ).data;
 
     const res = await serverFetch.post("/auth/login", {
@@ -86,12 +86,11 @@ export const loginUser = async (
       path: refreshTokenObject.Path || "/",
       sameSite: refreshTokenObject["SameSite"] || "none",
     });
-    const verifiedToken: JwtPayload | string = jwt.verify(
+    const verifiedToken = jwt.decode(
       accessTokenObject.accessToken,
-      process.env.access_token_secret as string
-    );
+    ) as JwtPayload;
 
-    if (typeof verifiedToken === "string") {
+    if (!verifiedToken) {
       throw new Error("Invalid token");
     }
 
