@@ -22,7 +22,7 @@ export const schedulesColumns: Column<ISchedule>[] = [
       const start = new Date(schedule.startDateTime);
       const end = new Date(schedule.endDateTime);
       const durationMinutes = Math.round(
-        (end.getTime() - start.getTime()) / (1000 * 60)
+        (end.getTime() - start.getTime()) / (1000 * 60),
       );
       return (
         <div className="flex items-center gap-1">

@@ -14,10 +14,10 @@ const SchedulesFilter = () => {
 
   // Local state for inputs with debouncing - use lazy initialization
   const [startDateInput, setStartDateInput] = useState(
-    () => searchParams.get("startDate") || ""
+    () => searchParams.get("startDate") || "",
   );
   const [endDateInput, setEndDateInput] = useState(
-    () => searchParams.get("endDate") || ""
+    () => searchParams.get("endDate") || "",
   );
 
   // Debounced values

@@ -17,7 +17,7 @@ const SchedulesTable = ({ schedules }: SchedulesTableProps) => {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [deletingSchedule, setDeletingSchedule] = useState<ISchedule | null>(
-    null
+    null,
   );
   const [isDeleting, setIsDeleting] = useState(false);
 
