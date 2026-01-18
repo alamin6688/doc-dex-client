@@ -27,10 +27,6 @@ const DoctorMySchedulesPage = async ({
   const myDoctorsScheduleResponse = await getDoctorOwnSchedules(queryString);
   const availableSchedulesResponse = await getAvailableSchedules();
 
-  console.log({
-    myDoctorsScheduleResponse,
-    availableSchedulesResponse,
-  });
 
   const schedules = myDoctorsScheduleResponse?.data || [];
   const meta = myDoctorsScheduleResponse?.meta;

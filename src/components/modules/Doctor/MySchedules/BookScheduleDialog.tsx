@@ -36,7 +36,7 @@ export default function BookScheduleDialog({
   availableSchedules: initialAvailableSchedules = [],
 }: BookScheduleDialogProps) {
   const [availableSchedules, setAvailableSchedules] = useState<ISchedule[]>(
-    initialAvailableSchedules
+    initialAvailableSchedules,
   );
   const [selectedSchedules, setSelectedSchedules] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,7 +55,6 @@ export default function BookScheduleDialog({
     try {
       setLoadingSchedules(true);
       const response = await getAvailableSchedules();
-      console.log("response:", response);
       setAvailableSchedules(response?.data || []);
     } catch (error) {
       console.error("Error loading schedules:", error);
@@ -69,7 +68,7 @@ export default function BookScheduleDialog({
     setSelectedSchedules((prev) =>
       prev.includes(scheduleId)
         ? prev.filter((id) => id !== scheduleId)
-        : [...prev, scheduleId]
+        : [...prev, scheduleId],
     );
   };
 
@@ -85,7 +84,7 @@ export default function BookScheduleDialog({
       toast.success(
         `Successfully booked ${selectedSchedules.length} schedule${
           selectedSchedules.length > 1 ? "s" : ""
-        }`
+        }`,
       );
       if (onSuccess) {
         onSuccess();
@@ -116,13 +115,11 @@ export default function BookScheduleDialog({
 
     return Object.entries(grouped).sort(
       ([dateA], [dateB]) =>
-        new Date(dateA).getTime() - new Date(dateB).getTime()
+        new Date(dateA).getTime() - new Date(dateB).getTime(),
     );
   };
 
   const groupedSchedules = groupSchedulesByDate();
-
-  console.log({ availableSchedules, groupedSchedules });
 
   return (
     <Dialog open={open} onOpenChange={onClose}>

@@ -101,7 +101,6 @@ export function AppointmentPieChart({
     value: Number(item.count),
     originalStatus: item.status,
   }));
-  console.log("pie data", formattedData);
 
 
   const getColor = (index: number, status?: string) => {

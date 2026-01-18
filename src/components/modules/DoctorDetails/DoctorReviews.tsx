@@ -41,7 +41,7 @@ export default function DoctorReviews({ doctorId }: DoctorReviewsProps) {
           if (response.data.length > 0) {
             const total = response.data.reduce(
               (sum: number, review: Review) => sum + review.rating,
-              0
+              0,
             );
             setStats({
               averageRating: total / response.data.length,
