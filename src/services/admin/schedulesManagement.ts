@@ -15,8 +15,8 @@ export async function createSchedule(_prevState: any, formData: FormData) {
   const validationPayload = {
     startDate: formData.get("startDate") as string,
     endDate: formData.get("endDate") as string,
-    startTime: formData.get("startTime") as string,
-    endTime: formData.get("endTime") as string,
+    startTime: (formData.get("startTime") as string).slice(0, 5),
+    endTime: (formData.get("endTime") as string).slice(0, 5),
   };
 
   /*
@@ -56,12 +56,9 @@ export async function createSchedule(_prevState: any, formData: FormData) {
   }
 
   try {
-
-    const payload = JSON.stringify(validation.data);
-    console.log("Creating Schedule Payload:", payload);
     const response = await serverFetch.post("/schedule", {
       headers: { "Content-Type": "application/json" },
-      body: payload,
+      body: JSON.stringify(validation.data),
     });
 
     const result = await response.json();
