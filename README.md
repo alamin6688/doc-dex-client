@@ -152,10 +152,25 @@ yarn install
 
 ---
 
-<h2>🤝 Contributing</h2>
-<p>
-Contributions are welcome! Fork the repository and submit a pull request for improvements, bug fixes, or new features.
-</p>
+<h2>🧪 Test Credentials</h2>
+
+<h3>Admin</h3>
+<ul>
+  <li><b>Email:</b> admin04@gmail.com</li>
+  <li><b>Password:</b> admin7890</li>
+</ul>
+
+<h3>Patient</h3>
+<ul>
+  <li><b>Email:</b> alamin.dpi06@gmail.com</li>
+  <li><b>Password:</b> patient123</li>
+</ul>
+
+<h3>Doctor</h3>
+<ul>
+  <li><b>Email:</b> nahidul@gmail.com</li>
+  <li><b>Password:</b> doctor7890</li>
+</ul>
 
 ---
 
