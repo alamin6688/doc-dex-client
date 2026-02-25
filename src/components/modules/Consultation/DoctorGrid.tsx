@@ -5,8 +5,8 @@ interface DoctorGridProps {
   doctors: IDoctor[];
 }
 
-export default function DoctorGrid({ doctors }: DoctorGridProps) {
-  if (doctors.length === 0) {
+export default function DoctorGrid({ doctors = [] }: DoctorGridProps) {
+  if (!doctors || doctors.length === 0) {
     return (
       <div className="text-center py-12">
         <p className="text-muted-foreground text-lg">

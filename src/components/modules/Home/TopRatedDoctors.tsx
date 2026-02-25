@@ -140,7 +140,7 @@ const containerVariants: Variants = {
 //   },
 // };
 
-export function FeaturedDoctors({ doctors }: { doctors: IDoctor[] }) {
+export function FeaturedDoctors({ doctors = [] }: { doctors: IDoctor[] }) {
   return (
     <section className="w-full bg-[#F9FAFB] py-20 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto">

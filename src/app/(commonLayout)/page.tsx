@@ -10,7 +10,8 @@ import { Hero } from "@/components/modules/Home/Hero";
 import { getDoctors } from "@/services/admin/doctorManagement";
 
 export default async function Home() {
-  const { data: doctors } = await getDoctors();
+  const res = await getDoctors();
+  const doctors = res?.data || [];
 
   return (
     <>
