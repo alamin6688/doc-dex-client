@@ -157,7 +157,7 @@ export default function AIDoctorSuggestion() {
                 {suggestedDoctors.map((doctor, index) => (
                   <div
                     key={doctor.id || index}
-                    className="p-4 bg-gradient-to-br from-primary/5 to-white rounded-lg border border-primary/20 hover:shadow-md transition-shadow"
+                    className="p-4 bg-linear-to-br from-primary/5 to-white rounded-lg border border-primary/20 hover:shadow-md transition-shadow"
                   >
                     <div className="flex items-start gap-4">
                       {/* Doctor Number Badge */}
@@ -258,14 +258,13 @@ export default function AIDoctorSuggestion() {
                         </div>
 
                         <div className="flex items-center justify-between pt-2 border-t border-primary/20 mt-auto">
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center">
+                            <span>Consultation fee: </span>
                             <DollarSign className="h-4 w-4 text-green-600" />
                             <span className="font-semibold text-green-700">
-                              ৳{doctor.appointmentFee}
+                              {doctor.appointmentFee}
                             </span>
-                            <span className="text-xs text-gray-500">
-                              consultation fee
-                            </span>
+                            <span className="text-xs text-gray-500"></span>
                           </div>
                           <Link href={`/consultation/doctor/${doctor.id}`}>
                             <Button size="sm">
