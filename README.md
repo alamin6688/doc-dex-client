@@ -1,118 +1,182 @@
-# 🩺 **Doc-Dex Client**
+<h1 align="center">🩺 Doc Dex</h1>
 
-> **Doc-Dex** is a modern, comprehensive Telemedicine platform built to streamline the interaction between doctors, patients, and administrators. It features role-based dashboards, appointment scheduling, and secure authentication.
+<p align="center">
+  <b>A modern, full‑featured Telemedicine Platform for Doctors & Patients</b>
+</p>
 
----
-
-## 🚀 **Tech Stack**
-
-The project leverages the latest web technologies for a robust and scalable frontend.
-
-### **Core Framework**
-![Next.js](https://img.shields.io/badge/Next.js-16.1-black?style=flat&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/React-19-blue?style=flat&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)
-
-### **Styling & UI**
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat&logo=tailwind-css)
-![Shadcn/UI](https://img.shields.io/badge/Shadcn%2FUI-Radix-black?style=flat&logo=radix-ui)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animation-purple?style=flat&logo=framer)
-![Lucide Icons](https://img.shields.io/badge/Lucide-Icons-orange?style=flat)
-
-### **State & Logic**
-![Zod](https://img.shields.io/badge/Zod-Validation-blue?style=flat&logo=zod)
-![Date-fns](https://img.shields.io/badge/Date--fns-Time_Manipulation-purple?style=flat)
-![Recharts](https://img.shields.io/badge/Recharts-Data_Viz-red?style=flat)
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16.1-black?style=flat&logo=next.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-19-blue?style=flat&logo=react" />
+  <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat&logo=tailwind-css" />
+  <img src="https://img.shields.io/badge/Shadcn%2FUI-Radix-black?style=flat&logo=radix-ui" />
+</p>
 
 ---
 
-## 🌟 **Key Features**
+<h2>📌 About the Project</h2>
 
-### **🔐 Authentication & Security**
-- **Secure Login/Signup**: Role-based authentication (Admin, Doctor, Patient).
-- **JWT Handling**: Secure token management with HttpOnly cookies.
-- **Protection**: Protected routes using Next.js Middleware.
-
-### **🏥 Doctors**
-- **Dashboard**: Overview of upcoming appointments and statistics.
-- **Schedule Management**: Create and manage availability slots.
-- **Consultations**: manage patient interactions.
-
-### **👤 Patients**
-- **Easy Booking**: Browse doctors, view profiles, and book appointments.
-- **Dashboard**: Track upcoming and past appointments.
-- **Payment Integration**: Secure payment processing for appointments.
-
-### **🛡️ Admins**
-- **User Management**: Manage doctors, patients, and other admins.
-- **Master Schedule**: Create global scheduling parameters.
-- **Analytics**: View platform-wide statistics and charts.
+<p>
+<b>Doc Dex</b> is a comprehensive Telemedicine platform designed to streamline interactions between doctors, patients, and administrators. It provides role‑based dashboards, appointment scheduling, secure authentication, and analytics — all built with a modern, scalable frontend stack.
+</p>
 
 ---
 
-## 📂 **Project Structure**
+<h2>🔗 Live & Repositories</h2>
 
-```bash
-src/
+<ul>
+  <li><b>Live App:</b> <a href="https://doc-dex-client.vercel.app" target="_blank">https://doc-dex-client.vercel.app</a></li>
+  <li><b>Backend API:</b> <a href="https://doc-dex-server-production.up.railway.app/api/v1" target="_blank">https://doc-dex-server-production.up.railway.app/api/v1</a></li>
+  <li><b>Backend Source Code:</b> <a href="https://github.com/alamin6688/doc-dex-server.git" target="_blank">https://github.com/alamin6688/doc-dex-server.git</a></li>
+</ul>
+
+---
+
+<h2>🚀 Tech Stack</h2>
+
+<h3>Core Framework</h3>
+<p>
+  <img src="https://img.shields.io/badge/Next.js-16.1-black?style=flat&logo=next.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-19-blue?style=flat&logo=react" />
+  <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript" />
+</p>
+
+<h3>Styling & UI</h3>
+<p>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat&logo=tailwind-css" />
+  <img src="https://img.shields.io/badge/Shadcn%2FUI-Radix-black?style=flat&logo=radix-ui" />
+  <img src="https://img.shields.io/badge/Framer_Motion-Animation-purple?style=flat&logo=framer" />
+  <img src="https://img.shields.io/badge/Lucide-Icons-orange?style=flat" />
+</p>
+
+<h3>State & Logic</h3>
+<p>
+  <img src="https://img.shields.io/badge/Zod-Validation-blue?style=flat&logo=zod" />
+  <img src="https://img.shields.io/badge/Date--fns-Time_Manipulation-purple?style=flat" />
+  <img src="https://img.shields.io/badge/Recharts-Data_Viz-red?style=flat" />
+</p>
+
+---
+
+<h2>🌟 Key Features</h2>
+
+<h3>🤖 AI-Powered Features</h3>
+<ul>
+  <li><b>Smart Symptom Matching:</b> Patients can enter symptoms and receive intelligent suggestions for relevant medical specialties.</li>
+  <li><b>Best Doctor Recommendation:</b> AI recommends the most suitable doctors based on symptoms, specialization, availability, and past performance.</li>
+  <li><b>Faster Appointment Decisions:</b> Reduces booking time by guiding patients directly to the right expert.</li>
+</ul>
+
+<h3>🔐 Authentication & Security</h3>
+<ul>
+  <li>Role‑based authentication (Admin, Doctor, Patient)</li>
+  <li>JWT with HttpOnly cookies</li>
+  <li>Protected routes using Next.js Middleware</li>
+</ul>
+
+<h3>🏥 Doctors</h3>
+<ul>
+  <li>Dashboard with appointment overview</li>
+  <li>Schedule & availability management</li>
+  <li>Patient consultation tools</li>
+</ul>
+
+<h3>👤 Patients</h3>
+<ul>
+  <li>Browse doctors & book appointments</li>
+  <li>Track upcoming and past visits</li>
+  <li>Secure payment integration</li>
+</ul>
+
+<h3>🛡️ Admins</h3>
+<ul>
+  <li>User & role management</li>
+  <li>Global scheduling control</li>
+  <li>Analytics & charts</li>
+</ul>
+
+---
+
+<h2>📂 Project Structure</h2>
+
+<pre><code>src/
 ├── app/                    # Next.js App Router (Pages & Layouts)
 │   ├── (commonLayout)/     # Public pages (Landing, Login, Register)
 │   ├── (dashboardLayout)/  # Protected Dashboards (Admin, Doctor, Patient)
 │   └── layout.tsx          # Root Layout
 ├── components/             # Reusable UI Components
 │   ├── ui/                 # Shadcn/Radix Primitives
-│   └── modules/            # Feature-specific components (Admin, Doctor, etc.)
-├── services/               # API Integration Services (Auth, Doctor, Schedule)
-├── lib/                    # Utilities (Server Fetch, Zod Validators)
+│   └── modules/            # Feature-specific components
+├── services/               # API Integration Services
+├── lib/                    # Utilities & Validators
 ├── types/                  # TypeScript Interfaces
-└── zod/                    # Zod Validation Schemas
-```
+└── zod/                    # Zod Schemas
+</code></pre>
 
 ---
 
-## 🛠️ **Installation Guide**
+<h2>🛠️ Installation Guide</h2>
 
-Follow these steps to set up the project locally.
-
-### **1. Clone the Repository**
-```bash
-git clone https://github.com/your-username/doc-dex-client.git
+<h3>1️⃣ Clone the Repository</h3>
+<pre><code>git clone https://github.com/your-username/doc-dex-client.git
 cd doc-dex-client
-```
+</code></pre>
 
-### **2. Install Dependencies**
-```bash
-npm install
+<h3>2️⃣ Install Dependencies</h3>
+<pre><code>npm install
 # or
 yarn install
-```
+</code></pre>
 
-### **3. Environment Setup**
-Create a `.env` file in the root directory and add the following variables:
-```env
-NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1  # Example Backend URL
-```
+<h3>3️⃣ Environment Setup</h3>
+<p>Create a <b>.env</b> file in the root directory:</p>
+<pre><code>NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
+</code></pre>
 
-### **4. Run Development Server**
-```bash
-npm run dev
-```
+<h3>4️⃣ Run Development Server</h3>
+<pre><code>npm run dev
+</code></pre>
 
-The application will be available at `http://localhost:3000`.
-
----
-
-## 📦 **Workflow**
-
-1.  **Landing Page**: Users arrive at the landing page to explore services.
-2.  **Authentication**: Users sign up or log in.
-    *   *Doctors* need approval or verification (depending on backend config).
-3.  **Dashboard Access**:
-    *   **Patient** navigates to `Dashboard` -> `Book Appointment`.
-    *   **Doctor** navigates to `Dashboard` -> `My Schedules` to set availability.
-    *   **Admin** oversees the platform and manages master data.
+<p>The app will be running at:</p>
+<pre><code>http://localhost:3000</code></pre>
 
 ---
 
-## 🤝 **Contributing**
+<h2>📦 Workflow</h2>
+<ol>
+  <li>Users visit the landing page</li>
+  <li>Authentication (Signup / Login)</li>
+  <li>Dashboard access based on role</li>
+  <li>Appointments, schedules, payments, and analytics</li>
+</ol>
 
-Contributions are welcome! Please fork the repository and submit a pull request for any enhancements.
+---
+
+<h2>🧪 Test Credentials</h2>
+
+<h3>Admin</h3>
+<ul>
+  <li><b>Email:</b> admin04@gmail.com</li>
+  <li><b>Password:</b> admin7890</li>
+</ul>
+
+<h3>Patient</h3>
+<ul>
+  <li><b>Email:</b> alamin.dpi06@gmail.com</li>
+  <li><b>Password:</b> patient123</li>
+</ul>
+
+<h3>Doctor</h3>
+<ul>
+  <li><b>Email:</b> nahidul@gmail.com</li>
+  <li><b>Password:</b> doctor7890</li>
+</ul>
+
+---
+
+<h2>📜 License</h2>
+<p>
+This project is licensed under the MIT License.
+</p>
+
+<p align="center">🚀 Built with passion for modern healthcare systems</p>
