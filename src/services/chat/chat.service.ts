@@ -20,7 +20,7 @@ export type ChatResponse = {
  */
 export async function sendChatMessage(
   message: string,
-  history: ChatMessage[] = []
+  history: ChatMessage[] = [],
 ): Promise<ChatResponse> {
   try {
     const response = await serverFetch.post("/chat", {
@@ -33,9 +33,17 @@ export async function sendChatMessage(
       console.error(`Chat server error (${response.status}):`, errorText);
       try {
         const errorJson = JSON.parse(errorText);
-        return { success: false, message: errorJson.message || "Server Error", data: null };
+        return {
+          success: false,
+          message: errorJson.message || "Server Error",
+          data: null,
+        };
       } catch (e) {
-        return { success: false, message: `Server error: ${response.status}`, data: null };
+        return {
+          success: false,
+          message: `Server error: ${response.status}`,
+          data: null,
+        };
       }
     }
 
