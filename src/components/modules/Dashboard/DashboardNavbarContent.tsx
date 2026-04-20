@@ -91,15 +91,17 @@ const DashboardNavbarContent = ({
           </div>
 
           {/* AI Search Dialog */}
-          <AISearchDialog
-            initialSymptoms={searchQuery}
-            externalOpen={aiDialogOpen}
-            onOpenChange={(open) => {
-              setAiDialogOpen(open);
-              if (!open) setSearchQuery("");
-            }}
-            onSearchComplete={() => setSearchQuery("")}
-          />
+          <div className="flex items-center gap-2">
+            <AISearchDialog
+              initialSymptoms={searchQuery}
+              externalOpen={aiDialogOpen}
+              onOpenChange={(open) => {
+                setAiDialogOpen(open);
+                if (!open) setSearchQuery("");
+              }}
+              onSearchComplete={() => setSearchQuery("")}
+            />
+          </div>
         </div>
 
         {/* Right Side Actions */}

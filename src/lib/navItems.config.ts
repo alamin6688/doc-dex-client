@@ -28,6 +28,12 @@ export const getCommonNavItems = (role: UserRole): NavSection[] => {
           icon: "User",
           roles: ["PATIENT", "DOCTOR", "ADMIN"],
         },
+        {
+          title: "AI Assistant",
+          href: "/ai-assistant",
+          icon: "MessageSquareDot",
+          roles: ["PATIENT", "DOCTOR", "ADMIN"],
+        },
       ],
     },
     // {

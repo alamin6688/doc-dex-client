@@ -1,12 +1,12 @@
-import { PublicFooter } from "@/components/shared/PublicFooter";
 import PublicNavbar from "@/components/shared/PublicNavbar";
+import ConditionalFooter from "@/components/shared/ConditionalFooter";
 
 const CommonLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <PublicNavbar />
       {children}
-      <PublicFooter />
+      <ConditionalFooter />
     </>
   );
 };

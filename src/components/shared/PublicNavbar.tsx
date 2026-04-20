@@ -7,11 +7,13 @@ import { getUserInfo } from "@/services/auth/getUserInfo";
 import MobileMenu from "./MobileMenu";
 import NavbarAuthButtons from "./NavbarAuthButtons";
 import { Stethoscope } from "lucide-react";
+import NavbarLinkItem from "./NavbarLinkItem";
 
 const PublicNavbar = async () => {
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/consultation", label: "Consultation" },
+    { href: "/ai-assistant", label: "AI Assistant" },
     { href: "/health-plans", label: "Health Plans" },
     { href: "/medicine", label: "Medicine" },
     { href: "/diagnostics", label: "Diagnostics" },
@@ -42,14 +44,11 @@ const PublicNavbar = async () => {
 
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             {navItems.map((link) => (
-              <Link
+              <NavbarLinkItem
                 key={link.label}
                 href={link.href}
-                prefetch={true}
-                className="hover:text-primary transition-colors text-gray-700"
-              >
-                {link.label}
-              </Link>
+                label={link.label}
+              />
             ))}
           </nav>
 

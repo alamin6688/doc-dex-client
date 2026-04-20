@@ -7,6 +7,7 @@ import UserDropdown from "../modules/Dashboard/UserDropdown";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
 import AISearchDialog from "./AISSearchDialog";
+import NavbarLinkItem from "./NavbarLinkItem";
 
 interface MobileMenuProps {
   navItems: Array<{ href: string; label: string }>;
@@ -33,16 +34,12 @@ const MobileMenu = ({
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
           <nav className="flex flex-col space-y-4 mt-8">
             {navItems.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-lg font-medium"
-              >
-                {link.label}
-              </Link>
+              <div key={link.label} className="text-lg font-medium">
+                <NavbarLinkItem href={link.href} label={link.label} />
+              </div>
             ))}
             <div className="border-t pt-4 flex flex-col space-y-4">
-              <div className="flex justify-center w-full">
+              <div className="flex flex-col gap-2 justify-center w-full">
                 <AISearchDialog />
               </div>
               {hasAccessToken && userInfo ? (

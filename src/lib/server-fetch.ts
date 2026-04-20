@@ -17,7 +17,10 @@ const serverFetchHelper = async (
     await getNewAccessToken();
   }
 
-  const response = await fetch(`${BACKEND_API_URL}${endpoint}`, {
+  const fullUrl = `${BACKEND_API_URL}${endpoint}`;
+  console.log(`ServerFetch calling: ${fullUrl}`);
+
+  const response = await fetch(fullUrl, {
     headers: {
       Cookie: accessToken ? `accessToken=${accessToken}` : "",
       ...headers,
