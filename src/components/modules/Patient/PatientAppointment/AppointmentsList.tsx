@@ -22,6 +22,7 @@ import {
   Star,
   Stethoscope,
   User,
+  Video,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -250,6 +251,18 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                 <span className="line-clamp-2">
                   {appointment.doctor.address}
                 </span>
+              </div>
+            )}
+
+            {/* Google Meet Link */}
+            {appointment.videoCallingId && appointment.videoCallingId.startsWith("http") && (
+              <div className="pt-2 border-t border-gray-100">
+                <Button variant="outline" className="w-full bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100 hover:text-blue-700" asChild>
+                  <a href={appointment.videoCallingId} target="_blank" rel="noopener noreferrer">
+                    <Video className="h-4 w-4 mr-2" />
+                    Join Video Consultation
+                  </a>
+                </Button>
               </div>
             )}
 

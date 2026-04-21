@@ -74,7 +74,7 @@ export async function getMyAppointments(queryString?: string) {
       {
         next: {
           tags: ["my-appointments"],
-          revalidate: 120,
+          revalidate: 0,
         },
       },
     );
@@ -98,7 +98,7 @@ export async function getAppointmentById(appointmentId: string) {
     const response = await serverFetch.get("/appointment/my-appointment", {
       next: {
         tags: ["my-appointments", `appointment-${appointmentId}`],
-        revalidate: 180,
+        revalidate: 0,
       },
     });
     const result = await response.json();

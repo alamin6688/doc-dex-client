@@ -45,6 +45,10 @@ export const loginUser = async (
 
     const result = await res.json();
 
+    if (!result.success) {
+      throw new Error(result.message || "Login failed");
+    }
+
     const setCookieHeaders = res.headers.getSetCookie();
 
     if (setCookieHeaders && setCookieHeaders.length > 0) {
@@ -59,7 +63,7 @@ export const loginUser = async (
         }
       });
     } else {
-      throw new Error("No Set-Cookie header found");
+      throw new Error("No Set-Cookie header found in an otherwise successful login");
     }
 
     if (!accessTokenObject) {
@@ -95,10 +99,6 @@ export const loginUser = async (
     }
 
     const userRole: UserRole = verifiedToken.role;
-
-    if (!result.success) {
-      throw new Error(result.message || "Login failed");
-    }
 
     if (redirectTo && result.data.needPasswordChange) {
       const requestedPath = redirectTo.toString();

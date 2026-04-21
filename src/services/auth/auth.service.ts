@@ -100,11 +100,11 @@ export async function resetPassword(_prevState: any, formData: FormData) {
       response = await serverFetch.post("/auth/reset-password", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           email: email,
           password: validationPayload.newPassword,
+          token: token,
         }),
       });
     } else {

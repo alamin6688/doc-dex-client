@@ -16,8 +16,9 @@ import { IAppointment } from "@/types/appointments.interface";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { toast } from "sonner";
 import AppointmentCountdown from "../../Patient/PatientAppointment/AppointmentCountdown";
+import { toast } from "sonner";
+import { Video } from "lucide-react";
 
 interface DoctorAppointmentDetailDialogProps {
   appointment: IAppointment | null;
@@ -200,6 +201,18 @@ export default function DoctorAppointmentDetailDialog({
                   </Badge>
                 </div>
               </div>
+
+              {appointment.videoCallingId && appointment.videoCallingId.startsWith("http") && (
+                <div className="col-span-2 pt-4 border-t mt-2">
+                  <p className="text-muted-foreground mb-2">Video Consultation Link</p>
+                  <Button variant="outline" className="w-full bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100 hover:text-blue-700" asChild>
+                    <a href={appointment.videoCallingId} target="_blank" rel="noopener noreferrer">
+                      <Video className="h-4 w-4 mr-2" />
+                      Join Video Consultation
+                    </a>
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
 
