@@ -154,22 +154,22 @@ yarn install
 
 <h2>🧪 Test Credentials</h2>
 
-<h3>Admin</h3>
-<ul>
-  <li><b>Email:</b> admin04@gmail.com</li>
-  <li><b>Password:</b> admin7890</li>
-</ul>
-
 <h3>Patient</h3>
 <ul>
-  <li><b>Email:</b> alamin.dpi06@gmail.com</li>
+  <li><b>Email:</b> alamin.kzs06@gmail.com</li>
   <li><b>Password:</b> patient123</li>
+</ul>
+
+<h3>Admin</h3>
+<ul>
+  <li><b>Email:</b> admin@example.com</li>
+  <li><b>Password:</b> admin789</li>
 </ul>
 
 <h3>Doctor</h3>
 <ul>
-  <li><b>Email:</b> nahidul@gmail.com</li>
-  <li><b>Password:</b> doctor7890</li>
+  <li><b>Email:</b> khalid@gmail.com</li>
+  <li><b>Password:</b> doctor123</li>
 </ul>
 
 ---
