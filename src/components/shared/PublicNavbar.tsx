@@ -46,7 +46,7 @@ const PublicNavbar = async () => {
         </div>
 
         <div className="flex items-center gap-6">
-          <nav className="hidden md:flex items-center space-x-2 text-xs font-bold">
+          <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((link) => (
               <NavbarLinkItem
                 key={link.label}
