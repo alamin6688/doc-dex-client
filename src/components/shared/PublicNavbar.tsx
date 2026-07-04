@@ -27,22 +27,26 @@ const PublicNavbar = async () => {
     : "/";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur  dark:bg-background/95">
-      <div className="container mx-auto flex items-center justify-between px-4 md:px-0">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-100/80 bg-white/75 backdrop-blur-md select-none dark:bg-slate-900/75 dark:border-slate-800/80">
+      <div className="container mx-auto max-w-7xl flex h-16 items-center justify-between px-6">
         <div>
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-16 h-11 bg-blue-600 rounded-lg flex items-center justify-center">
-              <Stethoscope className="w-6 h-6 text-white" />
+          <Link href="/" className="flex items-center space-x-2.5 group">
+            <div className="w-10 h-10 bg-linear-to-tr from-[#6366F1] to-[#A855F7] rounded-xl flex items-center justify-center shadow-md shadow-indigo-500/10 group-hover:scale-105 transition-transform duration-200">
+              <Stethoscope className="w-5 h-5 text-white" />
             </div>
-              <span className="w-full text-2xl font-bold text-primary">DocDex</span>
+            <div className="flex flex-col">
+              <span className="text-lg font-black tracking-tight text-slate-900 dark:text-slate-100 leading-none">
+                Doc<span className="text-[#4F46E5]">Dex</span>
+              </span>
+              <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-1">
+                Care Ecosystem
+              </span>
+            </div>
           </Link>
         </div>
-        <div className="container mx-auto flex h-16 items-center justify-end gap-4 px-4">
-          {/* <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold text-primary">DocDex</span>
-        </Link> */}
 
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+        <div className="flex items-center gap-6">
+          <nav className="hidden md:flex items-center space-x-2 text-xs font-bold">
             {navItems.map((link) => (
               <NavbarLinkItem
                 key={link.label}
@@ -52,7 +56,7 @@ const PublicNavbar = async () => {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-3 border-l border-slate-100 dark:border-slate-800 pl-6">
             <AISearchDialog />
             <NavbarAuthButtons
               initialHasToken={!!accessToken}
@@ -62,13 +66,15 @@ const PublicNavbar = async () => {
           </div>
 
           {/* Mobile Menu */}
-          <MobileMenu
-            navItems={navItems}
-            hasAccessToken={!!accessToken}
-            userInfo={userInfo}
-            dashboardRoute={dashboardRoute}
-          />
-        </div>{" "}
+          <div className="md:hidden flex items-center">
+            <MobileMenu
+              navItems={navItems}
+              hasAccessToken={!!accessToken}
+              userInfo={userInfo}
+              dashboardRoute={dashboardRoute}
+            />
+          </div>
+        </div>
       </div>
     </header>
   );
