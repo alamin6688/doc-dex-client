@@ -36,22 +36,29 @@ export async function proxy(request: NextRequest) {
 
   // const accessToken = request.cookies.get("accessToken")?.value || null;
 
-  const accessToken = (await getCookie("accessToken")) || null;
+  let accessToken = (await getCookie("accessToken")) || null;
 
   let userRole: UserRole | null = null;
   if (accessToken) {
-    const verifiedToken: JwtPayload | string = jwt.verify(
-      accessToken,
-      process.env.ACCESS_TOKEN_SECRET as string,
-    );
+    try {
+      const verifiedToken: JwtPayload | string = jwt.verify(
+        accessToken,
+        process.env.ACCESS_TOKEN_SECRET as string,
+      );
 
-    if (typeof verifiedToken === "string") {
+      if (typeof verifiedToken === "string") {
+        await deleteCookie("accessToken");
+        await deleteCookie("refreshToken");
+        return NextResponse.redirect(new URL("/login", request.url));
+      }
+
+      userRole = verifiedToken.role;
+    } catch {
       await deleteCookie("accessToken");
       await deleteCookie("refreshToken");
-      return NextResponse.redirect(new URL("/login", request.url));
+      accessToken = null;
+      userRole = null;
     }
-
-    userRole = verifiedToken.role;
   }
 
   const routerOwner = getRouteOwner(pathname);
