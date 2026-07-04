@@ -1,62 +1,75 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export default function DoctorCardSkeleton() {
   return (
-    <Card className="overflow-hidden bg-linear-to-br from-slate-50 to-slate-100/50 border-slate-200">
-      <CardHeader className="pb-3">
-        <div className="flex items-start gap-4">
-          {/* Avatar Skeleton */}
-          <Skeleton className="h-16 w-16 rounded-full bg-slate-300/70" />
+    <div className="h-full font-sans">
+      <Card className="overflow-hidden bg-white border border-slate-150 rounded-[28px] flex flex-col justify-between h-full p-0 gap-0">
 
-          <div className="flex-1 space-y-2">
-            {/* Name Skeleton */}
-            <Skeleton className="h-5 w-3/4 bg-slate-300/70" />
-            {/* Designation Skeleton */}
-            <Skeleton className="h-4 w-1/2 bg-slate-300/60" />
-            {/* Rating Skeleton */}
-            <Skeleton className="h-4 w-16 mt-2 bg-amber-300/50" />
+        {/* ── Banner image area (h-64 like the real card) ── */}
+        <CardHeader className="p-0 rounded-t-[27px] overflow-hidden">
+          <div className="relative w-full h-64 bg-slate-100 rounded-t-[27px]">
+            <Skeleton className="w-full h-full rounded-t-[27px]" />
+
+            {/* Availability badge pill — top-left */}
+            <div className="absolute top-4 left-4">
+              <Skeleton className="h-5 w-28 rounded-full" />
+            </div>
+
+            {/* Rating pill — top-right */}
+            <div className="absolute top-4 right-4">
+              <Skeleton className="h-5 w-14 rounded-full" />
+            </div>
           </div>
-        </div>
-      </CardHeader>
 
-      <CardContent className="space-y-3 pb-3 min-h-60 flex flex-col">
-        {/* Experience and Fee */}
-        <div className="grid grid-cols-2 gap-3">
-          <Skeleton className="h-4 w-full bg-slate-300/70" />
-          <Skeleton className="h-4 w-full bg-green-300/50" />
-        </div>
-
-        {/* Specialties */}
-        <div className="min-h-14 space-y-2">
-          <Skeleton className="h-3 w-20 bg-slate-300/60" />
-          <div className="flex flex-wrap gap-1">
-            <Skeleton className="h-6 w-24 rounded-full bg-primary/20" />
-            <Skeleton className="h-6 w-20 rounded-full bg-primary/20" />
-            <Skeleton className="h-6 w-28 rounded-full bg-primary/20" />
+          {/* Name / Designation + Fee row */}
+          <div className="pt-5 px-5 pb-1 flex justify-between items-start gap-4">
+            <div className="space-y-1.5 flex-1">
+              <Skeleton className="h-4 w-36" />
+              <Skeleton className="h-2.5 w-24" />
+            </div>
+            <div className="space-y-1.5 text-right">
+              <Skeleton className="h-2.5 w-6 ml-auto" />
+              <Skeleton className="h-4 w-14" />
+            </div>
           </div>
-        </div>
+        </CardHeader>
 
-        {/* Location */}
-        <Skeleton className="h-4 w-full bg-slate-300/70" />
+        {/* ── 2×2 Spec grid ── */}
+        <CardContent className="pt-4 px-5 pb-4 space-y-4 flex-1 flex flex-col justify-between">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-3.5 pt-3.5 border-t border-slate-100">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex items-center gap-2.5">
+                {/* Colored icon box */}
+                <Skeleton className="w-8 h-8 rounded-xl shrink-0" />
+                <div className="space-y-1 flex-1 min-w-0">
+                  <Skeleton className="h-2 w-14" />
+                  <Skeleton className="h-3 w-16" />
+                </div>
+              </div>
+            ))}
+          </div>
 
-        {/* Qualification */}
-        <div className="space-y-2 flex-1">
-          <Skeleton className="h-4 w-24 bg-slate-300/60" />
-          <Skeleton className="h-4 w-full bg-slate-300/70" />
-          <Skeleton className="h-4 w-3/4 bg-slate-300/70" />
-        </div>
-      </CardContent>
+          {/* Qualifications block */}
+          <div className="space-y-1.5 pt-3.5 border-t border-slate-100">
+            <Skeleton className="h-2 w-20" />
+            <Skeleton className="h-3 w-full" />
+            <Skeleton className="h-3 w-4/5" />
+          </div>
+        </CardContent>
 
-      <CardFooter className="pt-3 border-t border-slate-200 flex gap-2">
-        <Skeleton className="h-10 flex-1 bg-slate-300/70" />
-        <Skeleton className="h-10 flex-1 bg-primary/30" />
-      </CardFooter>
-    </Card>
+        {/* ── Footer: Details + Book Slot buttons ── */}
+        <CardFooter className="p-5 border-t border-slate-100 flex gap-3">
+          <Skeleton className="flex-1 h-9 rounded-xl" />
+          <Skeleton className="flex-1 h-9 rounded-xl bg-indigo-100" />
+        </CardFooter>
+
+      </Card>
+    </div>
   );
 }

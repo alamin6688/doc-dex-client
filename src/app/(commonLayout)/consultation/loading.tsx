@@ -1,50 +1,19 @@
-import DoctorGridSkeleton from "@/components/modules/Consultation/DoctorGridSkeleton";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import ConsultationPageSkeleton from "@/components/modules/Consultation/ConsultationPageSkeleton";
 
+/**
+ * Next.js route-level loading UI for /consultation.
+ * Displayed instantly while the page server-fetches doctors + specialties.
+ * Matches the exact background, padding and container of the real page.
+ */
 export default function ConsultationLoading() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="space-y-6">
-        {/* Header Skeleton */}
-        <div className="space-y-2">
-          <Skeleton className="h-9 w-48 bg-slate-300/70" />
-          <Skeleton className="h-5 w-96 bg-slate-300/60" />
-        </div>
+    <div className="w-full min-h-screen bg-[#F8F9FC] font-sans py-12 relative overflow-hidden">
+      {/* Mirror the page's decorative blur blobs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-50/40 rounded-full blur-[100px] pointer-events-none z-0" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-sky-50/30 rounded-full blur-[80px] pointer-events-none z-0" />
 
-        {/* AI Doctor Suggestion Skeleton */}
-        <Card className="border-primary/30 bg-linear-to-br from-primary/5 to-primary/10">
-          <CardContent className="p-6 space-y-4">
-            <div className="flex items-center gap-2">
-              <Skeleton className="h-10 w-10 rounded-lg bg-primary/30" />
-              <div className="space-y-2 flex-1">
-                <Skeleton className="h-6 w-48 bg-slate-300/70" />
-                <Skeleton className="h-4 w-64 bg-slate-300/60" />
-              </div>
-            </div>
-            <Skeleton className="h-24 w-full bg-slate-300/60" />
-            <Skeleton className="h-10 w-full bg-primary/30" />
-          </CardContent>
-        </Card>
-
-        {/* Filters Skeleton */}
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Skeleton className="h-10 flex-1 bg-slate-300/70" />
-          <Skeleton className="h-10 w-full sm:w-48 bg-slate-300/70" />
-          <Skeleton className="h-10 w-full sm:w-32 bg-slate-300/70" />
-        </div>
-
-        {/* Doctor Grid Skeleton */}
-        <DoctorGridSkeleton count={6} />
-
-        {/* Pagination Skeleton */}
-        <div className="flex justify-center gap-2">
-          <Skeleton className="h-10 w-24 bg-slate-300/70" />
-          <Skeleton className="h-10 w-10 bg-slate-300/70" />
-          <Skeleton className="h-10 w-10 bg-slate-300/70" />
-          <Skeleton className="h-10 w-10 bg-slate-300/70" />
-          <Skeleton className="h-10 w-24 bg-slate-300/70" />
-        </div>
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <ConsultationPageSkeleton />
       </div>
     </div>
   );

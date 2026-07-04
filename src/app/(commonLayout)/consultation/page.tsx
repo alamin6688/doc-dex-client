@@ -3,7 +3,7 @@ import DoctorGrid from "@/components/modules/Consultation/DoctorGrid";
 import DoctorSearchFilters from "@/components/modules/Consultation/DoctorSearchFilter";
 import ConsultationClientWrapper from "@/components/modules/Consultation/ConsultationClientWrapper";
 import TablePagination from "@/components/shared/TablePagination";
-import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import DoctorGridSkeleton from "@/components/modules/Consultation/DoctorGridSkeleton";
 import { Badge } from "@/components/ui/badge";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getDoctors } from "@/services/admin/doctorManagement";
@@ -63,7 +63,7 @@ const ConsultationPage = async ({
           </div>
 
           {/* Doctor Grid */}
-          <Suspense fallback={<TableSkeleton columns={3} />}>
+          <Suspense fallback={<DoctorGridSkeleton count={6} />}>
             <DoctorGrid doctors={doctors} />
           </Suspense>
 
