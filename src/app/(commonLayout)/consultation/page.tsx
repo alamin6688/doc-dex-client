@@ -46,7 +46,7 @@ const ConsultationPage = async ({
                 <Sparkles className="h-3.5 w-3.5 mr-1.5 animate-pulse text-[#4F46E5]" /> Clinical Specialists Hub
               </Badge>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-wide leading-tight">
               Find the Best Doctors You Need
             </h1>
             <p className="text-slate-500 text-sm max-w-lg mx-auto">
