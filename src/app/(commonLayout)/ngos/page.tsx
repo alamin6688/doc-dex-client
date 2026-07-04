@@ -169,7 +169,7 @@ const categoryMetadata: Record<
 
 // Animated Vector SVG representing connected healthcare networks
 const NetworkAnimation = () => {
-  return ( 
+  return (
     <motion.div
       initial={{ scale: 0.95, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
@@ -353,14 +353,16 @@ const NGOsPage = () => {
     if (!patientName || !patientPhone) return;
     const token = `DEX-NGO-${Math.floor(1000 + Math.random() * 9000)}`;
     setGeneratedReferralToken(token);
-    
-    const expiry = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString(undefined, {
+
+    const expiry = new Date(
+      Date.now() + 30 * 24 * 60 * 60 * 1000,
+    ).toLocaleDateString(undefined, {
       month: "short",
       day: "numeric",
       year: "numeric",
     });
     setValidUntilDate(expiry);
-    
+
     setSubmittedReferral(true);
   };
 
@@ -380,10 +382,10 @@ const NGOsPage = () => {
               className="p-6 bg-[#F8F9FD] border border-slate-100 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4"
             >
               <div className="space-y-1">
-                <span className="text-[10px] font-black text-[#4F46E5] uppercase tracking-wider block">
+                <span className="text-[10px] font-bold text-[#4F46E5] uppercase tracking-wider block">
                   Active Initiatives
                 </span>
-                <h4 className="text-lg font-black text-slate-900">
+                <h4 className="text-lg font-bold text-slate-900">
                   Mobile Health Camps Timeline
                 </h4>
                 <p className="text-slate-500 text-xs">
@@ -393,13 +395,13 @@ const NGOsPage = () => {
               </div>
               <div className="flex gap-2">
                 <div className="bg-white border border-slate-150 py-2.5 px-4 rounded-xl text-center shadow-2xs">
-                  <span className="text-sm font-black text-emerald-600 block">
+                  <span className="text-sm font-bold text-emerald-600 block">
                     Active Camps
                   </span>
                   <span className="text-xs text-slate-500">14 Rural Hubs</span>
                 </div>
                 <div className="bg-white border border-slate-150 py-2.5 px-4 rounded-xl text-center shadow-2xs">
-                  <span className="text-sm font-black text-[#4F46E5] block">
+                  <span className="text-sm font-bold text-[#4F46E5] block">
                     Medicine Stock
                   </span>
                   <span className="text-xs text-slate-500">92% Subsidized</span>
@@ -459,10 +461,10 @@ const NGOsPage = () => {
               variants={itemVariants}
               className="p-6 bg-[#F8F9FD] border border-slate-100 rounded-2xl"
             >
-              <span className="text-[10px] font-black text-[#4F46E5] uppercase tracking-wider block mb-1">
+              <span className="text-[10px] font-bold text-[#4F46E5] uppercase tracking-wider block mb-1">
                 Financial Subsidy
               </span>
-              <h4 className="text-lg font-black text-slate-900 mb-3">
+              <h4 className="text-lg font-bold text-slate-900 mb-3">
                 Critical Surgery Matching Program
               </h4>
 
@@ -538,7 +540,7 @@ const NGOsPage = () => {
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                     {stat.label}
                   </span>
-                  <span className="text-2xl font-black text-[#4F46E5] mt-1 block">
+                  <span className="text-2xl font-bold text-[#4F46E5] mt-1 block">
                     {stat.val}
                   </span>
                   <span className="text-[11px] text-slate-500 block mt-1">
@@ -655,7 +657,7 @@ const NGOsPage = () => {
           className="border-b border-slate-200/80 pb-6 mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4"
         >
           <div className="space-y-1">
-            <h1 className="text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <h1 className="text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
               NGO Network Workspace
             </h1>
             <p className="text-slate-500 text-sm mt-1.5">
@@ -710,172 +712,178 @@ const NGOsPage = () => {
         {/* Main Content Workspace Card (Blends directly with the Chrome tabs above) */}
         <motion.div variants={itemVariants} className="w-full">
           <Card className="bg-white rounded-b-[28px] rounded-tr-[28px] rounded-t-none border-x border-b border-slate-200/80 p-8 md:p-10 shadow-xs relative overflow-hidden -mt-px z-10">
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r from-[#6366F1] to-[#A855F7] hidden" />
+            <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r from-[#6366F1] to-[#A855F7] hidden" />
 
-          <div className="space-y-8">
-            {/* Dynamic Content Transitions */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedCategory}
-                initial={{ opacity: 0, x: 15 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -15 }}
-                transition={{ duration: 0.25 }}
-                className="space-y-8"
-              >
-                {/* Custom Category Layout Content */}
-                {renderCategoryLayoutContent()}
+            <div className="space-y-8">
+              {/* Dynamic Content Transitions */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedCategory}
+                  initial={{ opacity: 0, x: 15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -15 }}
+                  transition={{ duration: 0.25 }}
+                  className="space-y-8"
+                >
+                  {/* Custom Category Layout Content */}
+                  {renderCategoryLayoutContent()}
 
-                {/* Visual Section: Only show SVG in the "All" view */}
-                {selectedCategory === "All" && (
+                  {/* Visual Section: Only show SVG in the "All" view */}
+                  {selectedCategory === "All" && (
+                    <motion.div
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="show"
+                      className="w-full flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-slate-100 pb-8"
+                    >
+                      <motion.div
+                        variants={itemVariants}
+                        className="space-y-3 max-w-md"
+                      >
+                        <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+                          Personalized Impact Network
+                        </h2>
+                        <p className="text-slate-500 text-sm leading-relaxed">
+                          Our live coordination engine routes resources to
+                          primary care clinics, regional pharmacies, and mobile
+                          centers globally.
+                        </p>
+                      </motion.div>
+                      <motion.div
+                        variants={itemVariants}
+                        className="w-full max-w-md shrink-0"
+                      >
+                        <NetworkAnimation />
+                      </motion.div>
+                    </motion.div>
+                  )}
+
+                  {/* Sub-header inside main card */}
+                  <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <h3 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                      <Building2 className="h-5 w-5 text-[#4F46E5]" /> Directory
+                      Index
+                    </h3>
+
+                    {/* Search Bar Input */}
+                    <div className="relative w-full md:w-72">
+                      <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                      <Input
+                        type="text"
+                        placeholder="Search name, location..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pl-10 bg-[#F8F9FD] border-slate-100 text-slate-800 placeholder-slate-400 focus-visible:ring-indigo-500/20 rounded-xl py-5"
+                      />
+                    </div>
+                  </div>
+
+                  {/* NGO Directory Listings inside Workspace */}
                   <motion.div
+                    layout
                     variants={containerVariants}
                     initial="hidden"
                     animate="show"
-                    className="w-full flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-slate-100 pb-8"
+                    className="space-y-4"
                   >
-                    <motion.div variants={itemVariants} className="space-y-3 max-w-md">
-                      <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-                        Personalized Impact Network
-                      </h2>
-                      <p className="text-slate-500 text-sm leading-relaxed">
-                        Our live coordination engine routes resources to primary
-                        care clinics, regional pharmacies, and mobile centers
-                        globally.
-                      </p>
-                    </motion.div>
-                    <motion.div variants={itemVariants} className="w-full max-w-md shrink-0">
-                      <NetworkAnimation />
-                    </motion.div>
+                    <AnimatePresence mode="popLayout">
+                      {filteredNGOs.length > 0 ? (
+                        filteredNGOs.map((ngo) => {
+                          const meta = categoryMetadata[ngo.category] || {
+                            icon: Heart,
+                            color: "text-[#6366F1]",
+                            bgGlow: "from-indigo-500/5 to-transparent",
+                          };
+
+                          return (
+                            <motion.div
+                              key={ngo.id}
+                              layout
+                              variants={itemVariants}
+                              exit={{ opacity: 0, scale: 0.95 }}
+                              className="p-6 rounded-[24px] bg-white border border-slate-150 shadow-2xs hover:shadow-sm transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden group"
+                            >
+                              <div className="flex items-start gap-4">
+                                {/* Avatar design matching visual reference profile initials */}
+                                <div className="w-14 h-14 bg-linear-to-tr from-[#6366F1] to-[#A855F7] rounded-[18px] flex items-center justify-center text-white text-base font-bold shadow-md shrink-0 select-none">
+                                  {ngo.name
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .join("")
+                                    .slice(0, 2)
+                                    .toUpperCase()}
+                                </div>
+                                <div className="space-y-1">
+                                  <div className="flex items-center gap-2">
+                                    <h4 className="text-base font-extrabold text-slate-900 group-hover:text-[#4F46E5] transition-colors">
+                                      {ngo.name}
+                                    </h4>
+                                    {ngo.featured && (
+                                      <Badge className="bg-emerald-500/10 text-emerald-700 hover:bg-emerald-500/10 border-none font-bold px-2 py-0.5 rounded-md text-[9px] uppercase tracking-wider">
+                                        Featured
+                                      </Badge>
+                                    )}
+                                  </div>
+                                  <p className="text-slate-550 text-xs leading-relaxed max-w-xl">
+                                    {ngo.description}
+                                  </p>
+                                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-slate-400 pt-1.5 font-semibold">
+                                    <span className="flex items-center gap-1">
+                                      <MapPin className="h-3.5 w-3.5 text-slate-350" />{" "}
+                                      {ngo.location}
+                                    </span>
+                                    <span className="flex items-center gap-1 text-emerald-600 font-bold">
+                                      <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />{" "}
+                                      {ngo.impact}
+                                    </span>
+                                    <span className="flex items-center gap-1">
+                                      <Star className="h-3.5 w-3.5 text-amber-555" />{" "}
+                                      {ngo.rating} Rating
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="shrink-0 w-full md:w-auto">
+                                <Button
+                                  onClick={() => setSelectedNGO(ngo)}
+                                  className="w-full md:w-auto bg-[#4F46E5] hover:bg-[#4338CA] text-white font-extrabold rounded-xl py-5 px-5 flex items-center justify-center gap-2 shadow-xs cursor-pointer text-xs"
+                                >
+                                  Access Services
+                                  <ArrowUpRight className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            </motion.div>
+                          );
+                        })
+                      ) : (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="py-16 text-center"
+                        >
+                          <Globe className="h-10 w-10 text-slate-300 mx-auto mb-3 animate-pulse" />
+                          <h3 className="text-base font-bold text-slate-650">
+                            No organizations match your query
+                          </h3>
+                          <p className="text-slate-400 text-xs mt-1">
+                            Try resetting your category filters or search
+                            parameter.
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </motion.div>
-                )}
-
-                {/* Sub-header inside main card */}
-                <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-                  <h3 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
-                    <Building2 className="h-5 w-5 text-[#4F46E5]" /> Directory
-                    Index
-                  </h3>
-
-                  {/* Search Bar Input */}
-                  <div className="relative w-full md:w-72">
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                    <Input
-                      type="text"
-                      placeholder="Search name, location..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10 bg-[#F8F9FD] border-slate-100 text-slate-800 placeholder-slate-400 focus-visible:ring-indigo-500/20 rounded-xl py-5"
-                    />
-                  </div>
-                </div>
-
-                {/* NGO Directory Listings inside Workspace */}
-                <motion.div
-                  layout
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="show"
-                  className="space-y-4"
-                >
-                  <AnimatePresence mode="popLayout">
-                    {filteredNGOs.length > 0 ? (
-                      filteredNGOs.map((ngo) => {
-                        const meta = categoryMetadata[ngo.category] || {
-                          icon: Heart,
-                          color: "text-[#6366F1]",
-                          bgGlow: "from-indigo-500/5 to-transparent",
-                        };
-
-                        return (
-                          <motion.div
-                            key={ngo.id}
-                            layout
-                            variants={itemVariants}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            className="p-6 rounded-[24px] bg-white border border-slate-150 shadow-2xs hover:shadow-sm transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden group"
-                          >
-                            <div className="flex items-start gap-4">
-                              {/* Avatar design matching visual reference profile initials */}
-                              <div className="w-14 h-14 bg-linear-to-tr from-[#6366F1] to-[#A855F7] rounded-[18px] flex items-center justify-center text-white text-base font-bold shadow-md shrink-0 select-none">
-                                {ngo.name
-                                  .split(" ")
-                                  .map((n) => n[0])
-                                  .join("")
-                                  .slice(0, 2)
-                                  .toUpperCase()}
-                              </div>
-                              <div className="space-y-1">
-                                <div className="flex items-center gap-2">
-                                  <h4 className="text-base font-extrabold text-slate-900 group-hover:text-[#4F46E5] transition-colors">
-                                    {ngo.name}
-                                  </h4>
-                                  {ngo.featured && (
-                                    <Badge className="bg-emerald-500/10 text-emerald-700 hover:bg-emerald-500/10 border-none font-bold px-2 py-0.5 rounded-md text-[9px] uppercase tracking-wider">
-                                      Featured
-                                    </Badge>
-                                  )}
-                                </div>
-                                <p className="text-slate-550 text-xs leading-relaxed max-w-xl">
-                                  {ngo.description}
-                                </p>
-                                <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-slate-400 pt-1.5 font-semibold">
-                                  <span className="flex items-center gap-1">
-                                    <MapPin className="h-3.5 w-3.5 text-slate-350" />{" "}
-                                    {ngo.location}
-                                  </span>
-                                  <span className="flex items-center gap-1 text-emerald-600 font-bold">
-                                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />{" "}
-                                    {ngo.impact}
-                                  </span>
-                                  <span className="flex items-center gap-1">
-                                    <Star className="h-3.5 w-3.5 text-amber-555" />{" "}
-                                    {ngo.rating} Rating
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="shrink-0 w-full md:w-auto">
-                              <Button
-                                onClick={() => setSelectedNGO(ngo)}
-                                className="w-full md:w-auto bg-[#4F46E5] hover:bg-[#4338CA] text-white font-extrabold rounded-xl py-5 px-5 flex items-center justify-center gap-2 shadow-xs cursor-pointer text-xs"
-                              >
-                                Access Services
-                                <ArrowUpRight className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </motion.div>
-                        );
-                      })
-                    ) : (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="py-16 text-center"
-                      >
-                        <Globe className="h-10 w-10 text-slate-300 mx-auto mb-3 animate-pulse" />
-                        <h3 className="text-base font-bold text-slate-650">
-                          No organizations match your query
-                        </h3>
-                        <p className="text-slate-400 text-xs mt-1">
-                          Try resetting your category filters or search
-                          parameter.
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </motion.div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </AnimatePresence>
+            </div>
           </Card>
         </motion.div>
 
         {/* Simulated settings card block 2: How Network Helps */}
         <motion.div variants={itemVariants} className="mt-8 w-full">
           <Card className="bg-white border-slate-200/80 rounded-[32px] p-8 shadow-sm">
-            <h3 className="text-lg font-black text-slate-900 tracking-tight mb-6 flex items-center gap-2">
+            <h3 className="text-lg font-bold text-slate-900 tracking-tight mb-6 flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-[#4F46E5]" /> How the NGO
               Network Helps
             </h3>
@@ -908,7 +916,10 @@ const NGOsPage = () => {
         </motion.div>
 
         {/* Registration Banner - matches style in settings visual */}
-        <motion.div variants={itemVariants} className="mt-8 w-full p-8 rounded-[32px] bg-linear-to-br from-white via-white to-indigo-500/5 border border-indigo-100 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
+        <motion.div
+          variants={itemVariants}
+          className="mt-8 w-full p-8 rounded-[32px] bg-linear-to-br from-white via-white to-indigo-500/5 border border-indigo-100 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6"
+        >
           <div className="space-y-2 max-w-xl text-left">
             <Badge className="bg-[#ECEEFD] text-[#4F46E5] border-none font-bold rounded-md text-[9px] uppercase tracking-wider">
               Registration Open
@@ -976,7 +987,7 @@ const NGOsPage = () => {
                     className="space-y-6"
                   >
                     <div className="text-left space-y-1">
-                      <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                      <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
                         Access Services
                       </h3>
                       <p className="text-slate-500 text-sm">
@@ -1075,7 +1086,7 @@ const NGOsPage = () => {
                     </div>
 
                     <div className="text-center space-y-1">
-                      <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                      <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
                         Referral Pass Generated
                       </h3>
                       <p className="text-slate-500 text-sm">
@@ -1093,7 +1104,7 @@ const NGOsPage = () => {
                           <h4 className="text-[10px] uppercase tracking-widest text-[#4F46E5] font-extrabold">
                             Doc Dex Referral Pass
                           </h4>
-                          <p className="text-lg font-black tracking-tight text-slate-900 mt-1">
+                          <p className="text-lg font-bold tracking-tight text-slate-900 mt-1">
                             {selectedNGO?.name}
                           </p>
                         </div>
@@ -1112,7 +1123,7 @@ const NGOsPage = () => {
                           <span className="text-slate-400 font-extrabold uppercase tracking-wider block mb-0.5 text-[9px]">
                             Verification Code
                           </span>
-                          <span className="text-sm font-black text-[#4F46E5] font-mono tracking-wider">
+                          <span className="text-sm font-bold text-[#4F46E5] font-mono tracking-wider">
                             {generatedReferralToken}
                           </span>
                         </div>

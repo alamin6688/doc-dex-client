@@ -56,7 +56,8 @@ export default function AIAssistantPage() {
         setMessages([
           {
             role: "assistant",
-            content: "Hello! I am your DocDex AI Consultant. Describe your symptoms or medical questions, and I will assist you with clinically vetted guidelines.",
+            content:
+              "Hello! I am your DocDex AI Consultant. Describe your symptoms or medical questions, and I will assist you with clinically vetted guidelines.",
           },
         ]);
       }
@@ -64,7 +65,8 @@ export default function AIAssistantPage() {
       setMessages([
         {
           role: "assistant",
-          content: "Hello! I am your DocDex AI Consultant. Describe your symptoms or medical questions, and I will assist you with clinically vetted guidelines.",
+          content:
+            "Hello! I am your DocDex AI Consultant. Describe your symptoms or medical questions, and I will assist you with clinically vetted guidelines.",
         },
       ]);
     }
@@ -97,7 +99,7 @@ export default function AIAssistantPage() {
           </strong>
         ) : (
           part
-        )
+        ),
       );
 
       // Simple list detection
@@ -129,9 +131,14 @@ export default function AIAssistantPage() {
     try {
       const response = await sendChatMessage(query, messages);
       if (response.success && response.data?.reply) {
-        setMessages((prev) => [...prev, { role: "assistant", content: response.data!.reply }]);
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: response.data!.reply },
+        ]);
       } else {
-        setError(response.message || "I'm having trouble connecting to the servers.");
+        setError(
+          response.message || "I'm having trouble connecting to the servers.",
+        );
       }
     } catch (err) {
       setError("Connection failed. Please check your network.");
@@ -144,7 +151,8 @@ export default function AIAssistantPage() {
     const defaultMsg: ChatMessage[] = [
       {
         role: "assistant",
-        content: "Hello! I am your DocDex AI Consultant. Describe your symptoms or medical questions, and I will assist you with guidelines.",
+        content:
+          "Hello! I am your DocDex AI Consultant. Describe your symptoms or medical questions, and I will assist you with guidelines.",
       },
     ];
     setMessages(defaultMsg);
@@ -188,10 +196,8 @@ export default function AIAssistantPage() {
         className="flex-1 flex flex-col min-h-0 p-3 sm:p-6 max-w-7xl w-full mx-auto relative z-10"
       >
         <div className="flex-1 flex flex-col lg:flex-row gap-6 min-h-0">
-          
           {/* Left Sidebar (width 80) - Info & Quick Actions */}
           <div className="hidden lg:flex w-80 flex-col gap-5 overflow-y-auto pr-1 shrink-0 text-left">
-            
             {/* AI Assistant specs card */}
             <motion.div variants={itemVariants}>
               <Card className="border-indigo-150/60 bg-linear-to-br from-white to-indigo-50/30 rounded-[24px] shadow-2xs">
@@ -200,7 +206,7 @@ export default function AIAssistantPage() {
                     <Cpu className="h-5 w-5 animate-pulse" />
                   </div>
                   <div>
-                    <CardTitle className="text-sm font-black text-slate-900 tracking-tight">
+                    <CardTitle className="text-sm font-bold text-slate-900 tracking-tight">
                       A.I. Health Engine
                     </CardTitle>
                     <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block">
@@ -226,7 +232,8 @@ export default function AIAssistantPage() {
             {/* Quick Prompts list */}
             <motion.div variants={itemVariants} className="space-y-3">
               <h4 className="text-[10px] font-extrabold uppercase tracking-wider text-slate-450 px-2 flex items-center gap-1.5">
-                <MessageSquare className="h-3.5 w-3.5 text-indigo-400" /> Suggested Prompts
+                <MessageSquare className="h-3.5 w-3.5 text-indigo-400" />{" "}
+                Suggested Prompts
               </h4>
               <div className="space-y-2.5">
                 {QUICK_PROMPTS.map((prompt, idx) => {
@@ -262,12 +269,13 @@ export default function AIAssistantPage() {
                     <span>Emergency Disclaimer</span>
                   </div>
                   <p className="text-[10px] text-amber-900/80 leading-relaxed">
-                    AI guidelines are only informational. If you suffer chest pain, deep breathing issues, or a cardiac alert, dial national emergency help lines immediately.
+                    AI guidelines are only informational. If you suffer chest
+                    pain, deep breathing issues, or a cardiac alert, dial
+                    national emergency help lines immediately.
                   </p>
                 </CardContent>
               </Card>
             </motion.div>
-
           </div>
 
           {/* Right Main Chat Frame */}
@@ -282,7 +290,9 @@ export default function AIAssistantPage() {
                   <Stethoscope className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-black text-slate-900 tracking-tight">DocDex Clinical Assistant</h3>
+                  <h3 className="text-sm font-bold text-slate-900 tracking-tight">
+                    DocDex Clinical Assistant
+                  </h3>
                   <div className="flex items-center gap-1.5 text-[9px] font-bold text-slate-400 mt-0.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     Secure Sandbox Active
@@ -316,18 +326,30 @@ export default function AIAssistantPage() {
                         transition={{ duration: 0.2 }}
                         className={`flex ${isUser ? "justify-end" : "justify-start"}`}
                       >
-                        <div className={`flex gap-3 max-w-[90%] md:max-w-[80%] ${isUser ? "flex-row-reverse" : "flex-row"}`}>
-                          <div className={`mt-1 h-9 w-9 rounded-xl flex items-center justify-center shrink-0 shadow-xs border ${
-                            isUser ? "bg-[#4F46E5] border-indigo-500 text-white" : "bg-white border-slate-100 text-slate-600"
-                          }`}>
-                            {isUser ? <User className="w-4 h-4" /> : <Stethoscope className="w-4 h-4" />}
+                        <div
+                          className={`flex gap-3 max-w-[90%] md:max-w-[80%] ${isUser ? "flex-row-reverse" : "flex-row"}`}
+                        >
+                          <div
+                            className={`mt-1 h-9 w-9 rounded-xl flex items-center justify-center shrink-0 shadow-xs border ${
+                              isUser
+                                ? "bg-[#4F46E5] border-indigo-500 text-white"
+                                : "bg-white border-slate-100 text-slate-600"
+                            }`}
+                          >
+                            {isUser ? (
+                              <User className="w-4 h-4" />
+                            ) : (
+                              <Stethoscope className="w-4 h-4" />
+                            )}
                           </div>
-                          
-                          <div className={`rounded-[22px] px-5 py-3.5 text-xs shadow-2xs text-left leading-relaxed ${
-                            isUser 
-                              ? "bg-[#4F46E5] text-white rounded-tr-none" 
-                              : "bg-white text-slate-800 rounded-tl-none border border-slate-150/70"
-                          }`}>
+
+                          <div
+                            className={`rounded-[22px] px-5 py-3.5 text-xs shadow-2xs text-left leading-relaxed ${
+                              isUser
+                                ? "bg-[#4F46E5] text-white rounded-tr-none"
+                                : "bg-white text-slate-800 rounded-tl-none border border-slate-150/70"
+                            }`}
+                          >
                             {renderContent(m.content)}
                           </div>
                         </div>
@@ -367,7 +389,10 @@ export default function AIAssistantPage() {
 
             {/* Input Actions Footer panel */}
             <div className="p-4 bg-white border-t border-slate-100 shrink-0">
-              <form onSubmit={handleSend} className="max-w-3xl mx-auto flex gap-3">
+              <form
+                onSubmit={handleSend}
+                className="max-w-3xl mx-auto flex gap-3"
+              >
                 <Input
                   placeholder="Ask a question (e.g. 'explain what a high cholesterol value means')..."
                   value={input}
@@ -387,7 +412,6 @@ export default function AIAssistantPage() {
                 DocDex Secure Engine v2 · Confidential medical guidelines only
               </p>
             </div>
-
           </motion.div>
         </div>
       </motion.div>

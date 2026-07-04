@@ -103,7 +103,12 @@ const HealthPlansAnimation = () => {
           fill="none"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
         />
 
         <defs>
@@ -132,7 +137,12 @@ const HealthPlansAnimation = () => {
           r="8"
           fill="#8B5CF6"
           animate={{ scale: [1, 1.25, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
         />
 
         {/* Pulse rings */}
@@ -154,7 +164,12 @@ const HealthPlansAnimation = () => {
           strokeWidth="1"
           fill="none"
           animate={{ scale: [1, 1.6], opacity: [0.5, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeOut",
+            delay: 1,
+          }}
         />
       </svg>
     </motion.div>
@@ -167,7 +182,8 @@ const HealthPlansPage = () => {
   const [subscriberName, setSubscriberName] = useState("");
   const [subscriberPhone, setSubscriberPhone] = useState("");
   const [billingCycle, setBillingCycle] = useState("Monthly");
-  const [generatedSubscriptionToken, setGeneratedSubscriptionToken] = useState("");
+  const [generatedSubscriptionToken, setGeneratedSubscriptionToken] =
+    useState("");
   const [validUntilDate, setValidUntilDate] = useState("");
 
   const handleModalClose = () => {
@@ -188,7 +204,9 @@ const HealthPlansPage = () => {
     setGeneratedSubscriptionToken(token);
 
     const months = billingCycle === "Annual" ? 12 : 1;
-    const expiry = new Date(Date.now() + months * 30 * 24 * 60 * 60 * 1000).toLocaleDateString(undefined, {
+    const expiry = new Date(
+      Date.now() + months * 30 * 24 * 60 * 60 * 1000,
+    ).toLocaleDateString(undefined, {
       month: "short",
       day: "numeric",
       year: "numeric",
@@ -232,17 +250,19 @@ const HealthPlansPage = () => {
           className="border-b border-slate-200/80 pb-6 mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4"
         >
           <div className="space-y-1 text-left">
-            <h1 className="text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <h1 className="text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
               Health Plans & Packages
             </h1>
             <p className="text-slate-500 text-sm mt-1.5">
-              Choose a subscription plan that fits your family&apos;s healthcare coverage needs.
+              Choose a subscription plan that fits your family&apos;s healthcare
+              coverage needs.
             </p>
           </div>
 
           <div className="flex items-center gap-2">
             <Badge className="bg-[#ECEEFD] text-[#4F46E5] border-none font-bold py-1.5 px-3 rounded-full text-xs">
-              <Sparkles className="h-3.5 w-3.5 mr-1 animate-pulse" /> Health Coverage Verified
+              <Sparkles className="h-3.5 w-3.5 mr-1 animate-pulse" /> Health
+              Coverage Verified
             </Badge>
           </div>
         </motion.div>
@@ -256,13 +276,19 @@ const HealthPlansPage = () => {
             <motion.div
               key={plan.id}
               variants={itemVariants}
-              whileHover={{ y: -6, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+              whileHover={{
+                y: -6,
+                boxShadow:
+                  "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+              }}
               className={`flex flex-col justify-between p-8 rounded-[32px] bg-white border transition-all text-left relative overflow-hidden ${
-                plan.popular ? "border-2 border-[#4F46E5] shadow-sm" : "border-slate-200/80 shadow-xs"
+                plan.popular
+                  ? "border-2 border-[#4F46E5] shadow-sm"
+                  : "border-slate-200/80 shadow-xs"
               }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 right-0 bg-[#4F46E5] text-white text-[9px] font-black uppercase tracking-widest px-4 py-1.5 rounded-bl-xl">
+                <div className="absolute top-0 right-0 bg-[#4F46E5] text-white text-[9px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-bl-xl">
                   Popular Choice
                 </div>
               )}
@@ -270,14 +296,14 @@ const HealthPlansPage = () => {
               <div className="space-y-6">
                 {/* Plan Header */}
                 <div className="space-y-2.5">
-                  <h3 className="text-xl font-black text-slate-900">
+                  <h3 className="text-xl font-bold text-slate-900">
                     {plan.name}
                   </h3>
                   <p className="text-slate-500 text-xs leading-relaxed min-h-[32px]">
                     {plan.description}
                   </p>
                   <div className="flex items-baseline pt-2">
-                    <span className="text-3xl font-black text-slate-900 tracking-tight">
+                    <span className="text-3xl font-bold text-slate-900 tracking-tight">
                       {plan.price}
                     </span>
                     <span className="text-slate-400 text-xs font-bold ml-1">
@@ -326,18 +352,22 @@ const HealthPlansPage = () => {
           className="w-full flex flex-col md:flex-row md:items-center justify-between gap-8 bg-white border border-slate-200/80 p-8 md:p-10 rounded-[32px] mt-8 text-left relative overflow-hidden"
         >
           <div className="space-y-3 max-w-lg">
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
               Comprehensive Care Network
             </h2>
             <p className="text-slate-500 text-sm leading-relaxed">
-              All plans grant direct access to verified online specialist doctor consultations, diagnostic checking subsidies, and priority drug home shipments.
+              All plans grant direct access to verified online specialist doctor
+              consultations, diagnostic checking subsidies, and priority drug
+              home shipments.
             </p>
             <div className="flex flex-wrap gap-4 pt-2 text-xs font-bold text-slate-650">
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="h-4 w-4 text-emerald-500" /> Consultations Included
+                <CheckCircle className="h-4 w-4 text-emerald-500" />{" "}
+                Consultations Included
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="h-4 w-4 text-emerald-500" /> Subsidy Credits
+                <CheckCircle className="h-4 w-4 text-emerald-500" /> Subsidy
+                Credits
               </span>
             </div>
           </div>
@@ -347,8 +377,9 @@ const HealthPlansPage = () => {
         {/* Benefits section */}
         <motion.div variants={itemVariants} className="mt-12 w-full">
           <Card className="bg-white border-slate-200/80 rounded-[32px] p-8 shadow-sm">
-            <h3 className="text-lg font-black text-slate-900 tracking-tight mb-6 flex items-center gap-2 text-left">
-              <Sparkles className="h-5 w-5 text-[#4F46E5]" /> Why Activate Health Plans?
+            <h3 className="text-lg font-bold text-slate-900 tracking-tight mb-6 flex items-center gap-2 text-left">
+              <Sparkles className="h-5 w-5 text-[#4F46E5]" /> Why Activate
+              Health Plans?
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-left">
@@ -399,7 +430,10 @@ const HealthPlansPage = () => {
         </motion.div>
 
         {/* Enterprise/Corporate Banner */}
-        <motion.div variants={itemVariants} className="mt-8 w-full p-8 rounded-[32px] bg-linear-to-br from-white via-white to-indigo-500/5 border border-indigo-100 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
+        <motion.div
+          variants={itemVariants}
+          className="mt-8 w-full p-8 rounded-[32px] bg-linear-to-br from-white via-white to-indigo-500/5 border border-indigo-100 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6"
+        >
           <div className="space-y-2 max-w-xl text-left">
             <Badge className="bg-[#ECEEFD] text-[#4F46E5] border-none font-bold rounded-md text-[9px] uppercase tracking-wider">
               Corporate Portal
@@ -408,7 +442,9 @@ const HealthPlansPage = () => {
               Need customized plans for your enterprise?
             </h3>
             <p className="text-slate-500 text-xs leading-relaxed">
-              Integrate corporate employee accounts with Doc Dex subsidies. Enable automated medical checks, insurance tags, and custom monthly prescription benefits.
+              Integrate corporate employee accounts with Doc Dex subsidies.
+              Enable automated medical checks, insurance tags, and custom
+              monthly prescription benefits.
             </p>
           </div>
           <div className="shrink-0 w-full md:w-auto">
@@ -465,11 +501,12 @@ const HealthPlansPage = () => {
                     className="space-y-6 text-left"
                   >
                     <div className="text-left space-y-1">
-                      <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                      <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
                         Plan Subscription
                       </h3>
                       <p className="text-slate-500 text-sm">
-                        Activate your selected healthcare tier coverage immediately.
+                        Activate your selected healthcare tier coverage
+                        immediately.
                       </p>
                     </div>
 
@@ -493,7 +530,10 @@ const HealthPlansPage = () => {
                       </div>
                     </div>
 
-                    <form onSubmit={handleSubscriptionSubmit} className="space-y-4">
+                    <form
+                      onSubmit={handleSubscriptionSubmit}
+                      className="space-y-4"
+                    >
                       <div className="space-y-1.5">
                         <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block">
                           Subscriber Name
@@ -573,11 +613,12 @@ const HealthPlansPage = () => {
                     </div>
 
                     <div className="text-center space-y-1">
-                      <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                      <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
                         Coverage Pass Generated
                       </h3>
                       <p className="text-slate-500 text-sm">
-                        Your subscription has been activated successfully. Save this digital ticket details.
+                        Your subscription has been activated successfully. Save
+                        this digital ticket details.
                       </p>
                     </div>
 
@@ -590,7 +631,7 @@ const HealthPlansPage = () => {
                           <h4 className="text-[10px] uppercase tracking-widest text-[#4F46E5] font-extrabold">
                             Doc Dex Coverage Pass
                           </h4>
-                          <p className="text-lg font-black tracking-tight text-slate-900 mt-1">
+                          <p className="text-lg font-bold tracking-tight text-slate-900 mt-1">
                             {selectedPlan?.name}
                           </p>
                         </div>
@@ -602,7 +643,7 @@ const HealthPlansPage = () => {
                           <span className="text-slate-400 font-extrabold uppercase tracking-wider block mb-0.5 text-[9px]">
                             Subscription Code
                           </span>
-                          <span className="text-sm font-black text-[#4F46E5] font-mono tracking-wider">
+                          <span className="text-sm font-bold text-[#4F46E5] font-mono tracking-wider">
                             {generatedSubscriptionToken}
                           </span>
                         </div>

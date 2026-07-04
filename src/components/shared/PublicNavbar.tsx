@@ -35,7 +35,7 @@ const PublicNavbar = async () => {
               <Stethoscope className="w-5 h-5 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-black tracking-tight text-slate-900 dark:text-slate-100 leading-none">
+              <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100 leading-none">
                 Doc<span className="text-[#4F46E5]">Dex</span>
               </span>
               <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-1">

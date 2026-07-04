@@ -347,7 +347,7 @@ const DiagnosticsPage = () => {
           className="border-b border-slate-200/80 pb-6 mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4"
         >
           <div className="space-y-1 text-left">
-            <h1 className="text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <h1 className="text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
               Diagnostics Hub
             </h1>
             <p className="text-slate-500 text-sm mt-1.5">
@@ -376,7 +376,7 @@ const DiagnosticsPage = () => {
                   className="w-full flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-slate-100 pb-8 text-left"
                 >
                   <div className="space-y-3 max-w-md">
-                    <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+                    <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
                       Integrated Labs Network
                     </h2>
                     <p className="text-slate-500 text-sm leading-relaxed">
@@ -391,7 +391,7 @@ const DiagnosticsPage = () => {
 
               {/* Sub-header directory section & Search Bar */}
               <div className="flex flex-col md:flex-row gap-4 items-center justify-between border-b border-slate-100 pb-5">
-                <h3 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
+                <h3 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
                   <Microscope className="h-5 w-5 text-[#4F46E5]" /> Diagnostic
                   Test Catalog
                 </h3>
@@ -475,7 +475,7 @@ const DiagnosticsPage = () => {
                             </div>
 
                             <div className="flex items-center justify-between gap-2">
-                              <span className="text-lg font-black text-slate-900">
+                              <span className="text-lg font-bold text-slate-900">
                                 {test.price}
                               </span>
                               <Button
@@ -514,7 +514,7 @@ const DiagnosticsPage = () => {
         {/* How Booking Works section */}
         <motion.div variants={itemVariants} className="mt-8 w-full">
           <Card className="bg-white border-slate-200/80 rounded-[32px] p-8 shadow-sm">
-            <h3 className="text-lg font-black text-slate-900 tracking-tight mb-6 flex items-center gap-2 text-left">
+            <h3 className="text-lg font-bold text-slate-900 tracking-tight mb-6 flex items-center gap-2 text-left">
               <Sparkles className="h-5 w-5 text-[#4F46E5]" /> How Diagnostics
               Booking Works
             </h3>
@@ -622,7 +622,7 @@ const DiagnosticsPage = () => {
                     className="space-y-6"
                   >
                     <div className="text-left space-y-1">
-                      <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                      <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
                         Schedule Test
                       </h3>
                       <p className="text-slate-500 text-sm">
@@ -739,7 +739,7 @@ const DiagnosticsPage = () => {
                     </div>
 
                     <div className="text-center space-y-1">
-                      <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                      <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
                         Booking Pass Generated
                       </h3>
                       <p className="text-slate-500 text-sm">
@@ -757,7 +757,7 @@ const DiagnosticsPage = () => {
                           <h4 className="text-[10px] uppercase tracking-widest text-[#4F46E5] font-extrabold">
                             Doc Dex Diagnostic Pass
                           </h4>
-                          <p className="text-lg font-black tracking-tight text-slate-900 mt-1">
+                          <p className="text-lg font-bold tracking-tight text-slate-900 mt-1">
                             {selectedTest?.name}
                           </p>
                         </div>
@@ -769,7 +769,7 @@ const DiagnosticsPage = () => {
                           <span className="text-slate-400 font-extrabold uppercase tracking-wider block mb-0.5 text-[9px]">
                             Checkup Pass Code
                           </span>
-                          <span className="text-sm font-black text-[#4F46E5] font-mono tracking-wider">
+                          <span className="text-sm font-bold text-[#4F46E5] font-mono tracking-wider">
                             {generatedBookingToken}
                           </span>
                         </div>

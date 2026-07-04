@@ -76,7 +76,7 @@ export default function BookAppointmentDialog({
   const handleContinue = () => {
     if (selectedSchedule) {
       router.push(
-        `/dashboard/book-appointment/${doctor.id}/${selectedSchedule.scheduleId}`
+        `/dashboard/book-appointment/${doctor.id}/${selectedSchedule.scheduleId}`,
       );
     }
   };
@@ -84,14 +84,14 @@ export default function BookAppointmentDialog({
   return (
     <Dialog open={isOpen} onOpenChange={handleCloseModal}>
       <DialogContent className="max-w-2xl max-h-[85vh] rounded-[28px] border border-slate-150 p-6 sm:p-7 bg-white shadow-xl flex flex-col gap-5 overflow-hidden">
-        
         {/* Header Panel */}
         <DialogHeader className="text-left pb-4 border-b border-slate-100 flex flex-col gap-1 shrink-0">
-          <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">
+          <DialogTitle className="text-lg font-bold text-slate-900 tracking-tight">
             Book Appointment Slot
           </DialogTitle>
           <DialogDescription className="text-slate-400 text-xs">
-            Select an available time slot for your consultation with Dr. {doctor.name}.
+            Select an available time slot for your consultation with Dr.{" "}
+            {doctor.name}.
           </DialogDescription>
         </DialogHeader>
 
@@ -100,7 +100,11 @@ export default function BookAppointmentDialog({
           <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-150 rounded-2xl text-left">
             <Avatar className="h-12 w-12 border border-slate-200 shadow-2xs rounded-full">
               <AvatarImage
-                src={typeof doctor.profilePhoto === "string" ? doctor.profilePhoto : undefined}
+                src={
+                  typeof doctor.profilePhoto === "string"
+                    ? doctor.profilePhoto
+                    : undefined
+                }
                 alt={doctor.name}
               />
               <AvatarFallback className="text-sm bg-slate-200 text-slate-700 font-bold">
@@ -116,10 +120,10 @@ export default function BookAppointmentDialog({
               </p>
             </div>
             <div className="text-right">
-              <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block">
+              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block">
                 Consultation Fee
               </span>
-              <span className="text-[#4F46E5] font-black text-base">
+              <span className="text-[#4F46E5] font-bold text-base">
                 ${doctor.appointmentFee}
               </span>
             </div>
@@ -133,7 +137,8 @@ export default function BookAppointmentDialog({
                 Schedule data not available
               </p>
               <p className="text-[10px] text-slate-400 mt-1 max-w-sm mx-auto leading-relaxed">
-                The doctor has active schedules defined, but detailed start/end slot parameters are not loaded.
+                The doctor has active schedules defined, but detailed start/end
+                slot parameters are not loaded.
               </p>
             </div>
           ) : groupedSchedules.length === 0 ? (
@@ -153,7 +158,7 @@ export default function BookAppointmentDialog({
                   <div key={date} className="space-y-3">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4 text-[#4F46E5] shrink-0" />
-                      <h4 className="text-xs font-black text-slate-800 uppercase tracking-wider">
+                      <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
                         {format(new Date(date), "EEEE, MMMM d, yyyy")}
                       </h4>
                     </div>
@@ -163,7 +168,8 @@ export default function BookAppointmentDialog({
                         const startTime = schedule.schedule?.startDateTime
                           ? new Date(schedule.schedule.startDateTime)
                           : null;
-                        const isSelected = selectedSchedule?.scheduleId === schedule.scheduleId;
+                        const isSelected =
+                          selectedSchedule?.scheduleId === schedule.scheduleId;
 
                         return (
                           <Button
@@ -176,7 +182,9 @@ export default function BookAppointmentDialog({
                                 : "bg-white border-slate-200 text-slate-655 hover:bg-slate-50 hover:border-slate-350"
                             }`}
                           >
-                            <Clock className={`h-4 w-4 shrink-0 ${isSelected ? "text-[#4F46E5]" : "text-slate-400"}`} />
+                            <Clock
+                              className={`h-4 w-4 shrink-0 ${isSelected ? "text-[#4F46E5]" : "text-slate-400"}`}
+                            />
                             <span>
                               {startTime ? format(startTime, "h:mm a") : "N/A"}
                             </span>
@@ -194,7 +202,8 @@ export default function BookAppointmentDialog({
         {/* Footer Actions */}
         <DialogFooter className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-3 shrink-0">
           <div className="hidden sm:flex items-center gap-1.5 text-[9px] font-bold text-slate-400 uppercase tracking-wider">
-            <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" /> Vetted Reservation
+            <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" /> Vetted
+            Reservation
           </div>
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <Button
@@ -213,7 +222,6 @@ export default function BookAppointmentDialog({
             </Button>
           </div>
         </DialogFooter>
-
       </DialogContent>
     </Dialog>
   );

@@ -331,7 +331,7 @@ const MedicinePage = () => {
           className="border-b border-slate-200/80 pb-6 mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4"
         >
           <div className="space-y-1 text-left">
-            <h1 className="text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+            <h1 className="text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
               Online Medicine Store
             </h1>
             <p className="text-slate-505 text-sm mt-1.5">
@@ -359,7 +359,7 @@ const MedicinePage = () => {
             >
               {/* Catalog Search & Header */}
               <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-b border-slate-100 pb-5">
-                <h3 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2 text-left">
+                <h3 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2 text-left">
                   <Pill className="h-5 w-5 text-[#4F46E5]" /> Medical Catalogue
                 </h3>
                 <div className="relative w-full sm:w-64">
@@ -414,7 +414,7 @@ const MedicinePage = () => {
                         </div>
 
                         <div className="flex items-center justify-between gap-3 pt-3 mt-3 border-t border-slate-100/60">
-                          <span className="text-sm font-black text-slate-900">
+                          <span className="text-sm font-bold text-slate-900">
                             BDT {med.price}
                           </span>
                           <Button
@@ -450,7 +450,7 @@ const MedicinePage = () => {
                   exit={{ opacity: 0, x: -20 }}
                   className="bg-white rounded-[32px] border border-slate-200/80 p-8 shadow-sm space-y-6 text-left"
                 >
-                  <h3 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
                     <ShoppingCart className="h-5 w-5 text-[#4F46E5]" /> Order
                     Summary
                   </h3>
@@ -522,7 +522,7 @@ const MedicinePage = () => {
                         <span className="text-slate-450">Shipping Fee</span>
                         <span>BDT {shipping}</span>
                       </div>
-                      <div className="flex justify-between border-t border-slate-100 pt-2 text-sm font-black text-slate-900">
+                      <div className="flex justify-between border-t border-slate-100 pt-2 text-sm font-bold text-slate-900">
                         <span>Total Price</span>
                         <span>BDT {total}</span>
                       </div>
@@ -595,7 +595,7 @@ const MedicinePage = () => {
                   </div>
 
                   <div className="space-y-1">
-                    <h3 className="text-xl font-black text-slate-900">
+                    <h3 className="text-xl font-bold text-slate-900">
                       Order Confirmed
                     </h3>
                     <p className="text-slate-500 text-xs">
@@ -613,7 +613,7 @@ const MedicinePage = () => {
                         <h4 className="text-[9px] uppercase tracking-widest text-[#4F46E5] font-extrabold">
                           Doc Dex Delivery Slip
                         </h4>
-                        <p className="text-base font-black tracking-tight text-slate-900 mt-0.5">
+                        <p className="text-base font-bold tracking-tight text-slate-900 mt-0.5">
                           Pharmacy Order
                         </p>
                       </div>
@@ -625,7 +625,7 @@ const MedicinePage = () => {
                         <span className="text-slate-400 font-extrabold uppercase tracking-wider block mb-0.5 text-[8px]">
                           Order ID
                         </span>
-                        <span className="text-sm font-black text-[#4F46E5] font-mono">
+                        <span className="text-sm font-bold text-[#4F46E5] font-mono">
                           {checkoutPass?.orderId}
                         </span>
                       </div>
