@@ -19,7 +19,7 @@ import {
   X,
   Droplet,
   ExternalLink,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
 
 // Mock Directory Data for Interactive Diagnostic Tests (12 items in total)
@@ -28,7 +28,8 @@ const mockTests = [
     id: 1,
     name: "Complete Blood Count (CBC)",
     category: "Pathology & Blood",
-    description: "Evaluates overall health and detects a wide range of disorders including anemia, infection, and leukemia.",
+    description:
+      "Evaluates overall health and detects a wide range of disorders including anemia, infection, and leukemia.",
     price: "BDT 450",
     timeRequired: "12 Hours",
     sampleType: "Blood",
@@ -37,7 +38,8 @@ const mockTests = [
     id: 2,
     name: "Lipid Profile (Cholesterol)",
     category: "Pathology & Blood",
-    description: "Measures total cholesterol, LDL, HDL, and triglycerides to evaluate cardiac risk.",
+    description:
+      "Measures total cholesterol, LDL, HDL, and triglycerides to evaluate cardiac risk.",
     price: "BDT 800",
     timeRequired: "12 Hours",
     sampleType: "Blood (Fasting)",
@@ -46,7 +48,8 @@ const mockTests = [
     id: 3,
     name: "HbA1c (Diabetes Tracker)",
     category: "Pathology & Blood",
-    description: "Measures average blood sugar levels over the past 3 months to monitor diabetes.",
+    description:
+      "Measures average blood sugar levels over the past 3 months to monitor diabetes.",
     price: "BDT 650",
     timeRequired: "8 Hours",
     sampleType: "Blood",
@@ -55,7 +58,8 @@ const mockTests = [
     id: 4,
     name: "Magnetic Resonance Imaging (MRI) - Brain",
     category: "Radiology & Imaging",
-    description: "High-resolution imaging to detect tumors, aneurysms, stroke, and nerve structures.",
+    description:
+      "High-resolution imaging to detect tumors, aneurysms, stroke, and nerve structures.",
     price: "BDT 6,500",
     timeRequired: "24 Hours",
     sampleType: "Scan",
@@ -64,7 +68,8 @@ const mockTests = [
     id: 5,
     name: "Ultrasonography (USG) - Whole Abdomen",
     category: "Radiology & Imaging",
-    description: "Ultrasound scan to inspect internal organs like liver, gallbladder, kidneys, and spleen.",
+    description:
+      "Ultrasound scan to inspect internal organs like liver, gallbladder, kidneys, and spleen.",
     price: "BDT 1,500",
     timeRequired: "4 Hours",
     sampleType: "Scan",
@@ -73,7 +78,8 @@ const mockTests = [
     id: 6,
     name: "Digital Chest X-Ray",
     category: "Radiology & Imaging",
-    description: "Quick chest scan to evaluate lungs, heart shape, and chest wall conditions.",
+    description:
+      "Quick chest scan to evaluate lungs, heart shape, and chest wall conditions.",
     price: "BDT 500",
     timeRequired: "2 Hours",
     sampleType: "Scan",
@@ -82,7 +88,8 @@ const mockTests = [
     id: 7,
     name: "Electrocardiogram (ECG / EKG)",
     category: "Cardiology Tests",
-    description: "Records the electrical signals of the heart to check for rhythm abnormalities and heart issues.",
+    description:
+      "Records the electrical signals of the heart to check for rhythm abnormalities and heart issues.",
     price: "BDT 400",
     timeRequired: "Instant",
     sampleType: "Electrodes",
@@ -91,7 +98,8 @@ const mockTests = [
     id: 8,
     name: "Echocardiogram (Color Doppler)",
     category: "Cardiology Tests",
-    description: "Ultrasound scan of the heart to assess heart valves, chamber size, and pumping action.",
+    description:
+      "Ultrasound scan of the heart to assess heart valves, chamber size, and pumping action.",
     price: "BDT 2,200",
     timeRequired: "6 Hours",
     sampleType: "Scan",
@@ -100,7 +108,8 @@ const mockTests = [
     id: 9,
     name: "Full Body Health Package (Silver)",
     category: "Health Packages",
-    description: "Comprehensive package including CBC, Liver & Kidney functions, Lipid profile, and Blood Sugar.",
+    description:
+      "Comprehensive package including CBC, Liver & Kidney functions, Lipid profile, and Blood Sugar.",
     price: "BDT 3,500",
     timeRequired: "24 Hours",
     sampleType: "Blood & Urine",
@@ -109,7 +118,8 @@ const mockTests = [
     id: 10,
     name: "Executive Health Checkup (Platinum)",
     category: "Health Packages",
-    description: "Elite diagnostic suite with ECG, USG, Thyroid tests, Vitamin profiling, and complete bio-analysis.",
+    description:
+      "Elite diagnostic suite with ECG, USG, Thyroid tests, Vitamin profiling, and complete bio-analysis.",
     price: "BDT 7,800",
     timeRequired: "36 Hours",
     sampleType: "Blood, Urine & ECG",
@@ -118,7 +128,8 @@ const mockTests = [
     id: 11,
     name: "Thyroid Profile (T3, T4, TSH)",
     category: "Pathology & Blood",
-    description: "Evaluates thyroid gland function to screen for, diagnose, and monitor hypo- and hyperthyroidism.",
+    description:
+      "Evaluates thyroid gland function to screen for, diagnose, and monitor hypo- and hyperthyroidism.",
     price: "BDT 1,100",
     timeRequired: "12 Hours",
     sampleType: "Blood",
@@ -127,14 +138,18 @@ const mockTests = [
     id: 12,
     name: "CT Scan - Brain & Head",
     category: "Radiology & Imaging",
-    description: "Generates cross-sectional images of the brain to detect hemorrhages, tumors, and structural abnormalities.",
+    description:
+      "Generates cross-sectional images of the brain to detect hemorrhages, tumors, and structural abnormalities.",
     price: "BDT 4,500",
     timeRequired: "8 Hours",
     sampleType: "Scan",
-  }
+  },
 ];
 
-const categoryMetadata: Record<string, { icon: any; color: string; bgGlow: string }> = {
+const categoryMetadata: Record<
+  string,
+  { icon: any; color: string; bgGlow: string }
+> = {
   "Pathology & Blood": {
     icon: Microscope,
     color: "text-rose-500",
@@ -204,13 +219,18 @@ const DiagnosticsAnimation = () => {
           r="5"
           fill="#A855F7"
           animate={{
-            cx: [20, 100, 120, 140, 160, 175, 185, 195, 205, 250, 265, 285, 305, 380],
-            cy: [100, 100, 70, 140, 100, 100, 85, 115, 100, 100, 40, 160, 100, 100]
+            cx: [
+              20, 100, 120, 140, 160, 175, 185, 195, 205, 250, 265, 285, 305,
+              380,
+            ],
+            cy: [
+              100, 100, 70, 140, 100, 100, 85, 115, 100, 100, 40, 160, 100, 100,
+            ],
           }}
           transition={{
             duration: 3,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
 
@@ -275,12 +295,15 @@ const DiagnosticsPage = () => {
 
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!patientName || !patientPhone || !preferredDate || !preferredTime) return;
-    
+    if (!patientName || !patientPhone || !preferredDate || !preferredTime)
+      return;
+
     const token = `DEX-DIAG-${Math.floor(1000 + Math.random() * 9000)}`;
     setGeneratedBookingToken(token);
 
-    const expiry = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toLocaleDateString(undefined, {
+    const expiry = new Date(
+      Date.now() + 15 * 24 * 60 * 60 * 1000,
+    ).toLocaleDateString(undefined, {
       month: "short",
       day: "numeric",
       year: "numeric",
@@ -328,13 +351,15 @@ const DiagnosticsPage = () => {
               Diagnostics Hub
             </h1>
             <p className="text-slate-500 text-sm mt-1.5">
-              Schedule clinical test packages online, choose safe home collection, and access digital lab checkup passes.
+              Schedule clinical test packages online, choose safe home
+              collection, and access digital lab checkup passes.
             </p>
           </div>
 
           <div className="flex items-center gap-2">
             <Badge className="bg-[#ECEEFD] text-[#4F46E5] hover:bg-[#ECEEFD] border-none font-bold py-1.5 px-3 rounded-full text-xs">
-              <Sparkles className="h-3.5 w-3.5 mr-1 animate-pulse" /> Certified Labs
+              <Sparkles className="h-3.5 w-3.5 mr-1 animate-pulse" /> Certified
+              Labs
             </Badge>
           </div>
         </motion.div>
@@ -343,7 +368,6 @@ const DiagnosticsPage = () => {
         <motion.div variants={itemVariants} className="w-full">
           <Card className="bg-white rounded-[28px] border border-slate-200/80 p-8 md:p-10 shadow-xs relative overflow-hidden z-10">
             <div className="space-y-8">
-              
               {/* Visual Section */}
               {searchQuery === "" && (
                 <motion.div
@@ -356,7 +380,9 @@ const DiagnosticsPage = () => {
                       Integrated Labs Network
                     </h2>
                     <p className="text-slate-500 text-sm leading-relaxed">
-                      Book direct testing slots, choose home blood draw collections, and track lab report diagnostics in real time.
+                      Book direct testing slots, choose home blood draw
+                      collections, and track lab report diagnostics in real
+                      time.
                     </p>
                   </div>
                   <DiagnosticsAnimation />
@@ -366,7 +392,8 @@ const DiagnosticsPage = () => {
               {/* Sub-header directory section & Search Bar */}
               <div className="flex flex-col md:flex-row gap-4 items-center justify-between border-b border-slate-100 pb-5">
                 <h3 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
-                  <Microscope className="h-5 w-5 text-[#4F46E5]" /> Diagnostic Test Catalog
+                  <Microscope className="h-5 w-5 text-[#4F46E5]" /> Diagnostic
+                  Test Catalog
                 </h3>
                 <div className="relative w-full md:w-72">
                   <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -394,7 +421,7 @@ const DiagnosticsPage = () => {
                       const meta = categoryMetadata[test.category] || {
                         icon: Microscope,
                         color: "text-[#6366F1]",
-                        accentColor: "indigo"
+                        accentColor: "indigo",
                       };
                       const Icon = meta.icon;
 
@@ -403,13 +430,19 @@ const DiagnosticsPage = () => {
                           key={test.id}
                           layout
                           variants={itemVariants}
-                          whileHover={{ y: -6, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)" }}
+                          whileHover={{
+                            y: -6,
+                            boxShadow:
+                              "0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)",
+                          }}
                           className="flex flex-col justify-between p-6 rounded-3xl bg-white border border-slate-150 shadow-2xs hover:border-slate-250 transition-all text-left relative overflow-hidden group min-h-[290px]"
                         >
                           <div className="space-y-4">
                             {/* Card Top: Title & Icon */}
                             <div className="flex justify-between items-start gap-3">
-                              <div className={`p-3 bg-slate-50 rounded-2xl ${meta.color} group-hover:scale-110 transition-transform duration-200`}>
+                              <div
+                                className={`p-3 bg-slate-50 rounded-2xl ${meta.color} group-hover:scale-110 transition-transform duration-200`}
+                              >
                                 <Icon className="h-5 w-5" />
                               </div>
                               <Badge className="bg-slate-100 text-slate-655 font-bold text-[9px] uppercase tracking-wider border-none rounded-md px-2 py-0.5 mt-0.5">
@@ -432,10 +465,12 @@ const DiagnosticsPage = () => {
                           <div className="space-y-4 pt-4 mt-4 border-t border-slate-100/60">
                             <div className="flex flex-wrap gap-2 text-[10px] font-bold">
                               <span className="inline-flex items-center gap-1 bg-slate-50 px-2 py-1 rounded-md text-slate-500">
-                                <Clock className="h-3 w-3 text-slate-400" /> {test.timeRequired}
+                                <Clock className="h-3 w-3 text-slate-400" />{" "}
+                                {test.timeRequired}
                               </span>
                               <span className="inline-flex items-center gap-1 bg-indigo-50/50 px-2 py-1 rounded-md text-indigo-600">
-                                <Droplet className="h-3 w-3 text-indigo-400" /> {test.sampleType}
+                                <Droplet className="h-3 w-3 text-indigo-400" />{" "}
+                                {test.sampleType}
                               </span>
                             </div>
 
@@ -480,7 +515,8 @@ const DiagnosticsPage = () => {
         <motion.div variants={itemVariants} className="mt-8 w-full">
           <Card className="bg-white border-slate-200/80 rounded-[32px] p-8 shadow-sm">
             <h3 className="text-lg font-black text-slate-900 tracking-tight mb-6 flex items-center gap-2 text-left">
-              <Sparkles className="h-5 w-5 text-[#4F46E5]" /> How Diagnostics Booking Works
+              <Sparkles className="h-5 w-5 text-[#4F46E5]" /> How Diagnostics
+              Booking Works
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
@@ -515,7 +551,10 @@ const DiagnosticsPage = () => {
         </motion.div>
 
         {/* Partner Labs Banner */}
-        <motion.div variants={itemVariants} className="mt-8 w-full p-8 rounded-[32px] bg-linear-to-br from-white via-white to-indigo-500/5 border border-indigo-100 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
+        <motion.div
+          variants={itemVariants}
+          className="mt-8 w-full p-8 rounded-[32px] bg-linear-to-br from-white via-white to-indigo-500/5 border border-indigo-100 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6"
+        >
           <div className="space-y-2 max-w-xl text-left">
             <Badge className="bg-[#ECEEFD] text-[#4F46E5] border-none font-bold rounded-md text-[9px] uppercase tracking-wider">
               CAP & ISO Certified
@@ -524,7 +563,9 @@ const DiagnosticsPage = () => {
               Are you an accredited Diagnostic Center?
             </h3>
             <p className="text-slate-500 text-xs leading-relaxed">
-              Partner your diagnostics laboratory with the Doc Dex network. Secure digital patient routing, automate report synchronization, and scale medical diagnostic tracking.
+              Partner your diagnostics laboratory with the Doc Dex network.
+              Secure digital patient routing, automate report synchronization,
+              and scale medical diagnostic tracking.
             </p>
           </div>
           <div className="shrink-0 w-full md:w-auto">
@@ -585,7 +626,8 @@ const DiagnosticsPage = () => {
                         Schedule Test
                       </h3>
                       <p className="text-slate-500 text-sm">
-                        Schedule a slot for your diagnostic profile booking immediately.
+                        Schedule a slot for your diagnostic profile booking
+                        immediately.
                       </p>
                     </div>
 
@@ -609,7 +651,10 @@ const DiagnosticsPage = () => {
                       </div>
                     </div>
 
-                    <form onSubmit={handleBookingSubmit} className="space-y-4 text-left">
+                    <form
+                      onSubmit={handleBookingSubmit}
+                      className="space-y-4 text-left"
+                    >
                       <div className="space-y-1.5">
                         <label className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block">
                           Patient Full Name
@@ -698,7 +743,8 @@ const DiagnosticsPage = () => {
                         Booking Pass Generated
                       </h3>
                       <p className="text-slate-500 text-sm">
-                        Your laboratory checkup pass is verified. Present this pass at checkout.
+                        Your laboratory checkup pass is verified. Present this
+                        pass at checkout.
                       </p>
                     </div>
 
