@@ -171,7 +171,7 @@ export default function DoctorAppointmentDetailDialog({
                       appointmentDateTime={schedule.startDateTime}
                     />
                   </div>
-                  {appointment.videoCallingId && (
+                  {appointment.videoCallingId && appointment.videoCallingId.startsWith("http") && (
                     <div>
                       <p className="text-muted-foreground mb-1">Video Consultation Link</p>
                       <div className="flex items-center gap-2 text-sm text-blue-600 font-medium pt-1">

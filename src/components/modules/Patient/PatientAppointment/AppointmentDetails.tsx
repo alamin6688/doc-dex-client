@@ -437,7 +437,7 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
                             }
                             className="text-blue-700"
                           />
-                          {appointment.videoCallingId && (
+                          {appointment.videoCallingId && appointment.videoCallingId.startsWith("http") && (
                             <div className="flex items-center gap-2 text-sm text-blue-700 font-medium pt-1">
                               <Video className="h-4 w-4 shrink-0 text-blue-600" />
                               <a

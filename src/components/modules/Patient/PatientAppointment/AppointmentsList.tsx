@@ -236,23 +236,10 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                 {appointment.status === AppointmentStatus.SCHEDULED &&
                   appointment.paymentStatus === PaymentStatus.PAID &&
                   appointment.schedule.startDateTime && (
-                    <div className="pt-2 border-t border-gray-200 space-y-2">
+                    <div className="pt-2 border-t border-gray-200">
                       <AppointmentCountdown
                         appointmentDateTime={appointment.schedule.startDateTime}
                       />
-                      {appointment.videoCallingId && (
-                        <div className="flex items-center gap-2 text-sm text-blue-600 font-medium pt-1">
-                          <Video className="h-4 w-4 shrink-0 text-blue-500" />
-                          <a
-                            href={appointment.videoCallingId}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:underline break-all"
-                          >
-                            Join Google Meet
-                          </a>
-                        </div>
-                      )}
                     </div>
                   )}
               </div>
@@ -268,17 +255,6 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
               </div>
             )}
 
-            {/* Google Meet Link */}
-            {appointment.videoCallingId && appointment.videoCallingId.startsWith("http") && (
-              <div className="pt-2 border-t border-gray-100">
-                <Button variant="outline" className="w-full bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100 hover:text-blue-700" asChild>
-                  <a href={appointment.videoCallingId} target="_blank" rel="noopener noreferrer">
-                    <Video className="h-4 w-4 mr-2" />
-                    Join Video Consultation
-                  </a>
-                </Button>
-              </div>
-            )}
 
             {/* Review Status */}
             {appointment.status === AppointmentStatus.COMPLETED && (
@@ -304,6 +280,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                   View Details
                 </Link>
               </Button>
+              
               {appointment.paymentStatus === PaymentStatus.UNPAID &&
                 appointment.status !== AppointmentStatus.CANCELED && (
                   <Button
@@ -323,6 +300,26 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                         Pay Now
                       </>
                     )}
+                  </Button>
+                )}
+
+              {appointment.paymentStatus === PaymentStatus.PAID &&
+                appointment.status === AppointmentStatus.SCHEDULED &&
+                appointment.videoCallingId &&
+                appointment.videoCallingId.startsWith("http") && (
+                  <Button
+                    size="sm"
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                    asChild
+                  >
+                    <a
+                      href={appointment.videoCallingId}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Video className="mr-2 h-4 w-4" />
+                      Join Meet
+                    </a>
                   </Button>
                 )}
             </div>

@@ -72,7 +72,7 @@ export const doctorAppointmentColumns: Column<IAppointment>[] = [
                   appointmentDateTime={appointment.schedule.startDateTime}
                   className="text-xs"
                 />
-                {appointment.videoCallingId && (
+                {appointment.videoCallingId && appointment.videoCallingId.startsWith("http") && (
                   <div className="flex items-center gap-1 text-xs text-blue-600 font-medium pt-0.5">
                     <Video className="h-3 w-3 shrink-0 text-blue-500" />
                     <a
