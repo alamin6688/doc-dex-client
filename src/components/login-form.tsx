@@ -55,7 +55,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
           id="email"
           name="email"
           type="email"
-          placeholder="admin@gmail.com"
+          placeholder="admin@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="h-11 border-slate-200 focus-visible:ring-indigo-500/20 focus-visible:border-[#4F46E5] rounded-xl text-xs sm:text-sm px-4"
@@ -142,8 +142,8 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
         <button
           type="button"
           onClick={() => {
-            setEmail("admin@gmail.com");
-            setPassword("admin123");
+            setEmail("admin@example.com");
+            setPassword("admin789");
           }}
           className="w-full p-3 rounded-2xl bg-slate-50 border border-slate-150/70 hover:border-[#4F46E5]/45 hover:bg-indigo-50/10 transition-all text-left flex items-center justify-between group cursor-pointer"
         >
@@ -156,7 +156,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
               Use admin account
             </h5>
             <p className="text-[10px] text-slate-450 font-medium">
-              admin@gmail.com / admin123
+              admin@example.com / admin789
             </p>
           </div>
           <div className="w-7 h-7 bg-white border border-slate-200/80 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-[#4F46E5] group-hover:border-indigo-150 transition-colors shadow-2xs shrink-0">

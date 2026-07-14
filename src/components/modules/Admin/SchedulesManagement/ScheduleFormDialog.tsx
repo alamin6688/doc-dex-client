@@ -12,6 +12,12 @@ import { createSchedule } from "@/services/admin/schedulesManagement";
 import { useActionState, useEffect, useRef } from "react";
 import { toast } from "sonner";
 
+const timeOptions = Array.from({ length: 48 }, (_, i) => {
+  const hours = Math.floor(i / 2).toString().padStart(2, "0");
+  const minutes = i % 2 === 0 ? "00" : "30";
+  return `${hours}:${minutes}`;
+});
+
 interface IScheduleFormDialogProps {
   open: boolean;
   onClose: () => void;
@@ -58,8 +64,15 @@ const ScheduleFormDialog = ({
         <form
           ref={formRef}
           action={formAction}
+          autoComplete="off"
           className="flex flex-col flex-1 min-h-0"
         >
+          {/* Timezone Offset */}
+          <input
+            type="hidden"
+            name="timezoneOffset"
+            value={new Date().getTimezoneOffset().toString()}
+          />
           <div className="flex-1 overflow-y-auto px-6 space-y-4 pb-4">
             {/* Start Date */}
             <Field>
@@ -68,6 +81,7 @@ const ScheduleFormDialog = ({
                 id="startDate"
                 name="startDate"
                 type="date"
+                autoComplete="off"
                 defaultValue={state?.formData?.startDate || ""}
               />
               <InputFieldError field="startDate" state={state} />
@@ -80,6 +94,7 @@ const ScheduleFormDialog = ({
                 id="endDate"
                 name="endDate"
                 type="date"
+                autoComplete="off"
                 defaultValue={state?.formData?.endDate || ""}
               />
               <InputFieldError field="endDate" state={state} />
@@ -88,13 +103,19 @@ const ScheduleFormDialog = ({
             {/* Start Time */}
             <Field>
               <FieldLabel htmlFor="startTime">Start Time</FieldLabel>
-              <Input
+              <select
                 id="startTime"
                 name="startTime"
-                type="time"
                 defaultValue={state?.formData?.startTime || ""}
-                placeholder="HH:MM"
-              />
+                className="border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-slate-900 flex h-9 w-full min-w-0 rounded-md border bg-white px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+              >
+                <option value="" disabled hidden>Select Start Time</option>
+                {timeOptions.map((time) => (
+                  <option key={time} value={time}>
+                    {time}
+                  </option>
+                ))}
+              </select>
               <p className="text-xs text-gray-500 mt-1">
                 Example: 09:00 (24-hour format)
               </p>
@@ -104,13 +125,19 @@ const ScheduleFormDialog = ({
             {/* End Time */}
             <Field>
               <FieldLabel htmlFor="endTime">End Time</FieldLabel>
-              <Input
+              <select
                 id="endTime"
                 name="endTime"
-                type="time"
                 defaultValue={state?.formData?.endTime || ""}
-                placeholder="HH:MM"
-              />
+                className="border-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-slate-900 flex h-9 w-full min-w-0 rounded-md border bg-white px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+              >
+                <option value="" disabled hidden>Select End Time</option>
+                {timeOptions.map((time) => (
+                  <option key={time} value={time}>
+                    {time}
+                  </option>
+                ))}
+              </select>
               <p className="text-xs text-gray-500 mt-1">
                 Example: 17:00 (24-hour format). Schedules will be created in
                 30-minute intervals.

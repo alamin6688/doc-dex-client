@@ -44,3 +44,26 @@ export async function getPaymentStatus(appointmentId: string) {
     };
   }
 }
+
+export async function confirmPayment(sessionId: string) {
+  try {
+    const response = await serverFetch.post(`/appointment/confirm-payment`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sessionId }),
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (error: any) {
+    console.error("Error confirming payment:", error);
+    return {
+      success: false,
+      message:
+        process.env.NODE_ENV === "development"
+          ? error.message
+          : "Failed to confirm payment",
+    };
+  }
+}

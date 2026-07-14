@@ -52,6 +52,13 @@ export default function BookAppointmentDialog({
     doctorSchedules.forEach((schedule) => {
       if (!schedule.schedule?.startDateTime) return;
 
+      // Filter out booked slots
+      if (schedule.isBooked) return;
+
+      // Filter out slots that have already passed the current date/time
+      const startTime = new Date(schedule.schedule.startDateTime);
+      if (startTime < new Date()) return;
+
       const startDate = new Date(schedule.schedule.startDateTime)
         .toISOString()
         .split("T")[0];

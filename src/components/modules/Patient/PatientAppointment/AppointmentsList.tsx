@@ -234,6 +234,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                   </span>
                 </div>
                 {appointment.status === AppointmentStatus.SCHEDULED &&
+                  appointment.paymentStatus === PaymentStatus.PAID &&
                   appointment.schedule.startDateTime && (
                     <div className="pt-2 border-t border-gray-200">
                       <AppointmentCountdown

@@ -19,6 +19,8 @@ export async function createSchedule(_prevState: any, formData: FormData) {
     endTime: (formData.get("endTime") as string).slice(0, 5),
   };
 
+  const timezoneOffset = formData.get("timezoneOffset") as string;
+
   /*
     // Server-side validation
         const validation = createScheduleZodSchema.safeParse(validationPayload);
@@ -58,7 +60,7 @@ export async function createSchedule(_prevState: any, formData: FormData) {
   try {
     const response = await serverFetch.post("/schedule", {
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(validation.data),
+      body: JSON.stringify({ ...validation.data, timezoneOffset }),
     });
 
     const result = await response.json();

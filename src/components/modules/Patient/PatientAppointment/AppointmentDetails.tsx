@@ -425,6 +425,7 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
                   </div>
 
                   {appointment.status === AppointmentStatus.SCHEDULED &&
+                    appointment.paymentStatus === PaymentStatus.PAID &&
                     appointment.schedule.startDateTime && (
                       <>
                         <Separator className="bg-blue-200" />

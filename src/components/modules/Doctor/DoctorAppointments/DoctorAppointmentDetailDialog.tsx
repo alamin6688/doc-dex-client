@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Badge } from "@/components/ui/badge";
@@ -160,7 +161,7 @@ export default function DoctorAppointmentDetailDialog({
                     : "N/A"}
                 </p>
               </div>
-              {status === "SCHEDULED" && schedule?.startDateTime && (
+              {status === "SCHEDULED" && paymentStatus === "PAID" && schedule?.startDateTime && (
                 <div className="col-span-2 pt-2 border-t">
                   <p className="text-muted-foreground mb-2">
                     Time Until Appointment

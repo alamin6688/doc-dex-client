@@ -38,6 +38,7 @@ const AppointmentConfirmation = ({
 
   const handleConfirmBooking = async () => {
     setIsPayingNow(true);
+    setIsBooking(true);
 
     try {
       const result = await createAppointment({
@@ -60,16 +61,19 @@ const AppointmentConfirmation = ({
       } else {
         toast.error(result.message || "Failed to book appointment");
         setIsPayingNow(false);
+        setIsBooking(false);
       }
     } catch (error) {
       toast.error("An error occurred while booking the appointment");
       setIsPayingNow(false);
+      setIsBooking(false);
       console.error(error);
     }
   };
 
   const handlePayLater = async () => {
     setIsPayingLater(true);
+    setIsBooking(true);
 
     try {
       const result = await createAppointmentWithPayLater({
@@ -90,10 +94,12 @@ const AppointmentConfirmation = ({
       } else {
         toast.error(result.message || "Failed to book appointment");
         setIsPayingLater(false);
+        setIsBooking(false);
       }
     } catch (error) {
       toast.error("An error occurred while booking the appointment");
       setIsPayingLater(false);
+      setIsBooking(false);
       console.error(error);
     }
   };

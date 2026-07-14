@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   AppointmentStatus,
   IAppointment,
+  PaymentStatus,
 } from "@/types/appointments.interface";
 import { format } from "date-fns";
 import AppointmentCountdown from "../../Patient/PatientAppointment/AppointmentCountdown";
@@ -63,6 +64,7 @@ export const doctorAppointmentColumns: Column<IAppointment>[] = [
             {format(new Date(appointment.schedule.endDateTime), "h:mm a")}
           </p>
           {appointment.status === AppointmentStatus.SCHEDULED &&
+            appointment.paymentStatus === PaymentStatus.PAID &&
             appointment.schedule.startDateTime && (
               <div className="pt-1">
                 <AppointmentCountdown

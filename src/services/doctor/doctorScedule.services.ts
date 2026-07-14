@@ -33,7 +33,9 @@ export async function getDoctorOwnSchedules(queryString?: string) {
 
 export async function getAvailableSchedules() {
   try {
-    const response = await serverFetch.get(`/schedule`);
+    const response = await serverFetch.get(`/schedule`, {
+      cache: "no-store",
+    });
     const result = await response.json();
     return result;
   } catch (error: any) {
