@@ -18,6 +18,7 @@ import {
   Star,
   Stethoscope,
   User,
+  Video,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -429,13 +430,26 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
                     appointment.schedule.startDateTime && (
                       <>
                         <Separator className="bg-blue-200" />
-                        <div className="pt-2">
+                        <div className="pt-2 space-y-2">
                           <AppointmentCountdown
                             appointmentDateTime={
                               appointment.schedule.startDateTime
                             }
                             className="text-blue-700"
                           />
+                          {appointment.videoCallingId && (
+                            <div className="flex items-center gap-2 text-sm text-blue-700 font-medium pt-1">
+                              <Video className="h-4 w-4 shrink-0 text-blue-600" />
+                              <a
+                                href={appointment.videoCallingId}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:underline break-all"
+                              >
+                                Join Google Meet
+                              </a>
+                            </div>
+                          )}
                         </div>
                       </>
                     )}

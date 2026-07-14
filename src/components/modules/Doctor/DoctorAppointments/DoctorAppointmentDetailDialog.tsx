@@ -162,13 +162,31 @@ export default function DoctorAppointmentDetailDialog({
                 </p>
               </div>
               {status === "SCHEDULED" && paymentStatus === "PAID" && schedule?.startDateTime && (
-                <div className="col-span-2 pt-2 border-t">
-                  <p className="text-muted-foreground mb-2">
-                    Time Until Appointment
-                  </p>
-                  <AppointmentCountdown
-                    appointmentDateTime={schedule.startDateTime}
-                  />
+                <div className="col-span-2 pt-2 border-t space-y-2">
+                  <div>
+                    <p className="text-muted-foreground mb-1">
+                      Time Until Appointment
+                    </p>
+                    <AppointmentCountdown
+                      appointmentDateTime={schedule.startDateTime}
+                    />
+                  </div>
+                  {appointment.videoCallingId && (
+                    <div>
+                      <p className="text-muted-foreground mb-1">Video Consultation Link</p>
+                      <div className="flex items-center gap-2 text-sm text-blue-600 font-medium pt-1">
+                        <Video className="h-4 w-4 shrink-0 text-blue-500" />
+                        <a
+                          href={appointment.videoCallingId}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline break-all"
+                        >
+                          Join Google Meet
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
               <div>

@@ -8,6 +8,7 @@ import {
 } from "@/types/appointments.interface";
 import { format } from "date-fns";
 import AppointmentCountdown from "../../Patient/PatientAppointment/AppointmentCountdown";
+import { Video } from "lucide-react";
 
 const statusConfig: Record<
   AppointmentStatus,
@@ -66,11 +67,24 @@ export const doctorAppointmentColumns: Column<IAppointment>[] = [
           {appointment.status === AppointmentStatus.SCHEDULED &&
             appointment.paymentStatus === PaymentStatus.PAID &&
             appointment.schedule.startDateTime && (
-              <div className="pt-1">
+              <div className="pt-1 space-y-1">
                 <AppointmentCountdown
                   appointmentDateTime={appointment.schedule.startDateTime}
                   className="text-xs"
                 />
+                {appointment.videoCallingId && (
+                  <div className="flex items-center gap-1 text-xs text-blue-600 font-medium pt-0.5">
+                    <Video className="h-3 w-3 shrink-0 text-blue-500" />
+                    <a
+                      href={appointment.videoCallingId}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline break-all"
+                    >
+                      Join Meet
+                    </a>
+                  </div>
+                )}
               </div>
             )}
         </div>

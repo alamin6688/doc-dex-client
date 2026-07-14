@@ -236,10 +236,23 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                 {appointment.status === AppointmentStatus.SCHEDULED &&
                   appointment.paymentStatus === PaymentStatus.PAID &&
                   appointment.schedule.startDateTime && (
-                    <div className="pt-2 border-t border-gray-200">
+                    <div className="pt-2 border-t border-gray-200 space-y-2">
                       <AppointmentCountdown
                         appointmentDateTime={appointment.schedule.startDateTime}
                       />
+                      {appointment.videoCallingId && (
+                        <div className="flex items-center gap-2 text-sm text-blue-600 font-medium pt-1">
+                          <Video className="h-4 w-4 shrink-0 text-blue-500" />
+                          <a
+                            href={appointment.videoCallingId}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline break-all"
+                          >
+                            Join Google Meet
+                          </a>
+                        </div>
+                      )}
                     </div>
                   )}
               </div>
