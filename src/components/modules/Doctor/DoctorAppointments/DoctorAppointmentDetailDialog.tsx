@@ -171,13 +171,17 @@ export default function DoctorAppointmentDetailDialog({
                       appointmentDateTime={schedule.startDateTime}
                     />
                   </div>
-                  {appointment.videoCallingId && appointment.videoCallingId.startsWith("http") && (
+                  {appointment.videoCallingId && (
                     <div>
                       <p className="text-muted-foreground mb-1">Video Consultation Link</p>
                       <div className="flex items-center gap-2 text-sm text-blue-600 font-medium pt-1">
                         <Video className="h-4 w-4 shrink-0 text-blue-500" />
                         <a
-                          href={appointment.videoCallingId}
+                          href={
+                            appointment.videoCallingId.startsWith("http")
+                              ? appointment.videoCallingId
+                              : `https://meet.jit.si/docdex-appointment-${appointment.id}`
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
                           className="hover:underline break-all"

@@ -437,11 +437,15 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
                             }
                             className="text-blue-700"
                           />
-                          {appointment.videoCallingId && appointment.videoCallingId.startsWith("http") && (
+                          {appointment.videoCallingId && (
                             <div className="flex items-center gap-2 text-sm text-blue-700 font-medium pt-1">
                               <Video className="h-4 w-4 shrink-0 text-blue-600" />
                               <a
-                                href={appointment.videoCallingId}
+                                href={
+                                  appointment.videoCallingId.startsWith("http")
+                                    ? appointment.videoCallingId
+                                    : `https://meet.jit.si/docdex-appointment-${appointment.id}`
+                                }
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:underline break-all"
