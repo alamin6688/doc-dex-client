@@ -305,15 +305,18 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
 
               {appointment.paymentStatus === PaymentStatus.PAID &&
                 appointment.status === AppointmentStatus.SCHEDULED &&
-                appointment.videoCallingId &&
-                appointment.videoCallingId.startsWith("http") && (
+                appointment.videoCallingId && (
                   <Button
                     size="sm"
                     className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
                     asChild
                   >
                     <a
-                      href={appointment.videoCallingId}
+                      href={
+                        appointment.videoCallingId.startsWith("http")
+                          ? appointment.videoCallingId
+                          : `https://meet.jit.si/docdex-appointment-${appointment.id}`
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                     >
